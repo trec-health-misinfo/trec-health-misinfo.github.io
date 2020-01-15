@@ -1,4 +1,4 @@
-# TREC Health Misinformation Track
+# TREC Health Misinformation Track (2020)
 
 ## Track Overview
 Search engine results underpin many consequential decision making tasks. Examples include
