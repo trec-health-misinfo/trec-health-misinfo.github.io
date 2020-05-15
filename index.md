@@ -10,7 +10,7 @@ In this context, the TREC 2020 Misinformation track fosters research on retrieva
 
 This year, we have focused the track specifically on misinformation related to COVID-19 and SARS-CoV-2, adopting a news corpus from January to April, 2020 as the basis for our test collection. As our understanding of the disease evolved over this period some facts became better known. For example, at one point, it was suggested that Ibuprofen might worsen COVID-19. A retrieval effort undertaken today should avoid returning these articles, or else label them as potentially misleading.
 
-#### The following guidelines are likely to be adapted in the next few weeks (last update: May 15, 2020).
+#### These guidelines are still in draft form. We invite comments and suggested changes from participants. We plan to finalize the guidelines on June 5, 2020.
 
 ## Tentative Schedule
 * **June 30, 2020** Topics are released;
