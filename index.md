@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # TREC Health Misinformation Track (2020)
 
 ## Track Overview
