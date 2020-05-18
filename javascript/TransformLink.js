@@ -1,5 +1,5 @@
 // Function to change the link and title content once they are clicked
-function transformLink(){
+document.getElementById(pastedition_link).onclick = function(){
 	// Get the title and anchor elements
 	var title = document.getElementById("pastedition_title");
 	var link = document.getElementById("pastedition_link");
