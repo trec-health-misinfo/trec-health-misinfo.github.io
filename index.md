@@ -29,7 +29,7 @@ This year, we have focused the track specifically on misinformation related to C
 ## Collection
 
 #### Corpus
-For the TREC Medical Misinformation 2020 track, we will be using the documents found in [CommonCrawl News crawl](https://commoncrawl.org/2016/10/news-dataset-available/) from January, 1st 2020 to April 30th, 2020. CommonCrawl News contains news articles from news sites all over the world.  
+For the TREC Health Misinformation 2020 track, we will be using the documents found in [CommonCrawl News crawl](https://commoncrawl.org/2016/10/news-dataset-available/) from January, 1st 2020 to April 30th, 2020. CommonCrawl News contains news articles from news sites all over the world.  
 The format of the collection follows a standard Web ARChive (WARC) format. Each document in a WARC file contains a WARC header and the raw data from the crawl. To learn more about the format of the collection and examples of the full WARC extract, please see the CommonCrawl website [here](https://commoncrawl.org/the-data/get-started/).
 
 **Instructions on how to download the collection:** The CC News Crawl is available on AWS S3. You will need the [AWS CLI](https://aws.amazon.com/cli/) to download it.
@@ -47,7 +47,7 @@ $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/04 /pat
 **Document Identifier:** The WARC header for each document in a WARC file contains a "WARC-Record-ID" field. For our purposes, the value of the WARC-Record-ID field is considered the document identifier (the "docno").  If you plan to use WET files, please use the WARC-Refers-To field instead.
 
 #### Topics
-The track focuses on topics within the consumer health search domain (people seeking health advice online) For TREC 2020 the track will focus on COVID-19. The recent coronavirus crisis represents a good example of uncontrolled proliferation of misinformation, which can have serious consequences on consumer health.
+The track focuses on topics within the consumer health search domain (people seeking health advice online). For TREC 2020 the track will focus on COVID-19. The recent coronavirus crisis represents a good example of uncontrolled proliferation of misinformation, which can have serious consequences on consumer health.
 
 Unlike previous tracks, the assessors will not be creating their own topic statements. Instead, the assessors will be provided with topics that include query, description, alignment, and narrative fields. The query field of each topic is built as a pair of treatment and disease, where for TREC 2020, the disease is always COVID-19. The description is in the form of a questions and is built as a triplet of treatment, effect, and disease, where the effect can be: cause, prevent, worsen, cure, help. Only these terms will be used, so that descriptions are all of the form: "Can X Y COVID-19?", where X is a treatment and Y is one of the five effect terms.
 
