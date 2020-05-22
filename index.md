@@ -149,4 +149,4 @@ Details to be announced later.
 
 
 ## Contact
-For more information or to ask questions, join the [google groups](https://groups.google.com/forum/#!forum/trec-decision-track)
+For more information or to ask questions, join the [google groups](https://groups.google.com/forum/#!forum/trec-health-misinformation-track)
