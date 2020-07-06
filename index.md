@@ -19,7 +19,7 @@ This year, we have focused the track specifically on misinformation related to C
 ## Tentative Schedule
 * **~~June 30, 2020~~ July 17, 2020** Topics are released;
 * **September 1, 2020** Runs due:
-  * Before 7am August XX 2020 Eastern Time Zone (Gaithersburg, MD, USA);
+  * Before 7am September 1, 2020 Eastern Time Zone (Gaithersburg, MD, USA);
   * Please check TREC active participants page for the runs submission link;
 * **October 2020** Results returned;
 * **October 2020** Notebook paper due;
