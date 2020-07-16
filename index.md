@@ -42,18 +42,18 @@ $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/03 /pat
 $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/04 /path/to/local/destination
 ```
 
-**Optional: How to get WET format.** Common Crawl also informally provides a tool to get the text extracts (WET format). WET files contain the extracted plain text with tags (HTML, scripts, etc) removed. If you would like to obtain the WET format for the news crawl, please see the instructions [here](https://groups.google.com/d/msg/common-crawl/hsb90GHq6to/SSVocyq8AAAJ). More information on the WARC and WET file formats can be found [here](https://commoncrawl.org/the-data/get-started/).
+**Optional: How to get WET format.** Common Crawl also informally provides a tool to get the text extracts (WET format). WET files contain the extracted plain text with tags (HTML, scripts, etc) removed. Unless you have a reason to do otherwise, we recommend working with these text extracts. If you would like to obtain the WET format for the news crawl, please see the instructions [here](https://groups.google.com/d/msg/common-crawl/hsb90GHq6to/SSVocyq8AAAJ). More information on the WARC and WET file formats can be found [here](https://commoncrawl.org/the-data/get-started/).
 
 **Document Identifier:** The WARC header for each document in a WARC file contains a "WARC-Record-ID" field. For our purposes, the value of the WARC-Record-ID field is considered the document identifier (the "docno").  If you plan to use WET files, please use the WARC-Refers-To field instead.
 
 #### Topics
 The track focuses on topics within the consumer health search domain (people seeking health advice online). For TREC 2020 the track will focus on COVID-19. The recent coronavirus crisis represents a good example of uncontrolled proliferation of misinformation, which can have serious consequences on consumer health.
 
-Unlike previous tracks, the assessors will not be creating their own topic statements. Instead, the assessors will be provided with topics that include query, description, alignment, and narrative fields. The query field of each topic is built as a pair of treatment and disease, where for TREC 2020, the disease is always COVID-19. The description is in the form of a questions and is built as a triplet of treatment, effect, and disease, where the effect can be: cause, prevent, worsen, cure, help. Only these terms will be used, so that descriptions are all of the form: "Can X Y COVID-19?", where X is a treatment and Y is one of the five effect terms.
+Unlike previous tracks, the assessors will not be creating their own topic statements. Instead, the assessors will be provided with topics that include query, description, answer, narrative, and evidence fields. The query field of each topic is built as a pair of treatment and disease, where for TREC 2020, the disease is always COVID-19. The description is in the form of a questions and is built as a triplet of (treatment, effect, disease) where the effect can be: cause, prevent, worsen, cure, help. Only these terms will be used, so that descriptions are all of the form: "Can X Y COVID-19?", where X is a treatment and Y is one of the five effect terms.
 
-The alignment field  is one of "yes" or "no". *You should assume that the alignment specifies the correct answer for the purposes of this task.* This alignment corresponds to the topic writer's best understanding of medical consensus at the time of topic creation, but it is not medical advice, and should not be taken as truth outside of the context of this track.
+The answeer field  is one of "yes" or "no". *You should assume that this field specifies the correct answer for the purposes of this task.* This answer corresponds to the topic writer's best understanding of medical consensus at the time of topic creation, but it is not medical advice, and should not be taken as truth outside of the context of this track. The evidence field contains the URL of a page from the open Web that was used to determine the answer. This page may or may not be part of the corpus.
 
-For the total recall task, participants should identify documents aligned against the topic, i.e., contradicting the answer in the alignment field. For the adhoc task, participants should return the most credible and complete information supporting the alignment.
+For the total recall task, participants should identify documents contradicting the answer. For the adhoc task, participants should return the most credible and complete information supporting the answer. Note that for many topics the corpus may contain a large number of documents that would be relevant to the query in the traditional topical sense, but which neither support nor contradict the answer.
 
 The topics will be provided as `XML` files using the following format:
 
@@ -63,11 +63,13 @@ The topics will be provided as `XML` files using the following format:
 <number>0</number>
 <query>ibuprofen COVID-19</query>
 <description>Can ibuprofen worsen COVID-19?</description>
-<alignment>no</alignment>
-<narrative>Ibuprofen is an anti-inflammatory drug used to reduce fever and treat pain or
-inflammation. Recently, there has been a large debate over whether Ibuprofen can worsen 
-the effects of COVID-19. A relevant document explains the effects of Ibuprofen in 
-relation to coronavirus. </narrative>
+<answer>no</answer>
+<evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7287029</evidence>
+<narrative>Ibuprofen is an anti-inflammatory drug used to reduce fever and treat pain and
+inflammation. Recently, there has been a debate over whether Ibuprofen can worsen 
+the effects of COVID-19. A helpful document might explain in clear language that
+there is no scientific evidence supporting this concern. A harmful document might
+create anxiety and/or cause people to avoid taking the drug.</narrative>
 </topic>
 <topic>
 ...
@@ -75,11 +77,11 @@ relation to coronavirus. </narrative>
 </topics>
 ```
 
-The narrative field is intended to aid with assessment and should not be used for automatic runs. All of the other fields may be used by automatic runs.
+The narrative and evidence fields are intended to aid with assessment and should not be used for automatic runs. All of the other fields may be used by automatic runs.
 
 ## Runs
-For the total recall and ahdoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field of topics should not be used for automatic runs, but all other topics fields may be used.  
-A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. 
+For the total recall and ahdoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topics fields may be used.  
+A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. The narrative and evidence fields may be used for manual runs. Any use of these fields makes the run a manual run, even if all other processing is automatic.
 
 Submission format will follow the standard TREC run format as follows:
 
@@ -109,7 +111,7 @@ Example run is shown below:
 
 #### Task 1 - Total Recall
 
-**Task Description:** Documents opposing the topic alignment are assumed to be misinformation. Participants must identify all documents in a collection that promulgate, promote, and/or support that misinformation. For example, for the example topic above ("Can Ibuprofen worsen COVID-19?"), you must identify all documents indicating that Ibuprofen can worsen COVID-19. Documents making this claim for the purposes of debunking it are not misinformation.
+**Task Description:** Documents contradiciting the topic's answer are assumed to be misinformation. Participants must identify all documents in a collection that promulgate, promote, and/or support that misinformation. For example, for the example topic above ("Can Ibuprofen worsen COVID-19?"), you must identify all documents indicating that Ibuprofen can worsen COVID-19. Documents making this claim for the purposes of debunking it are not misinformation.
 
 **Runs:** Runs should rank documents according to the likelihood that they promulgate misinformation. Submission format will follow the standard TREC run format, as specified above. You may submit up to three runs of up to 10,000 ranked documents for each topic.
 
@@ -120,7 +122,7 @@ Example run is shown below:
 **Task Description:** Participants devise search technologies that promote credible and correct information over incorrect information, with the assumption that correct information can better lead people to make correct decisions.
 
 Given the corpus and topics, your task is to return relevant, credible, and correct information that will help searchers make correct decisions. 
-You will assume that the statement included in the topic description is correct or not, based on the alignment field, even if current medical or other evidence suggests otherwise.
+You should assume that the statement included in the topic description is correct or not, based on the answer field, even if you know current medical or other evidence suggests otherwise.
 
 Note that this task is more than simply a new definition of what is relevant. There are three types of results: correct and relevant, incorrect, and non-relevant. It is important that search results avoid containing incorrect results, and ranking non-relevant results above incorrect is preferred. In place of notions of correctness, the credibility of the information source is useful, and relevant and credible information is preferred.
 
@@ -130,7 +132,7 @@ Participating groups will be allowed to submit as many runs as they like, but th
 **Evaluation:** The final qrels will contain assessments with respect to the following criteria:
 * *Relevance*: whether the document is relevant to the topic;
 * *Credibility*: whether the document is considered credible by the assessor;
-* *Correctness*: whether the document contains correct information with respect to the alignment detailed in the topic description.
+* *Correctness*: whether the document contains correct information with respect to the answer provided in the topic description.
 Note that non-relevant documents will not be assessed with respect to credibility and correctness. 
 
 Submitted runs will be evaluated with respect to the three criteria: relevance, credibility, and correctness. We will design specific measures to account for those aspects and to penalize systems which retrieve incorrect documents.
