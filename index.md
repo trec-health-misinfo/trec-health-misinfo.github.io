@@ -17,7 +17,7 @@ This year, we have focused the track specifically on misinformation related to C
 <!--#### These guidelines are still in draft form. We invite comments and suggested changes from participants. We plan to finalize the guidelines on June 5, 2020.-->
 
 ## Tentative Schedule
-* **~~June 30, 2020~~ July 17, 2020** Topics are released;
+* **~~June 30, 2020~~ ~~July 17, 2020~~** [Topics are released](topics.xml);
 * **September 1, 2020** Runs due:
   * Before 7am September 1, 2020 Eastern Time Zone (Gaithersburg, MD, USA);
   * Please check TREC active participants page for the runs submission link;
@@ -80,7 +80,7 @@ create anxiety and/or cause people to avoid taking the drug.</narrative>
 The narrative and evidence fields are intended to aid with assessment and should not be used for automatic runs. All of the other fields may be used by automatic runs.
 
 ## Runs
-For the total recall and ahdoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topic fields may be used.  
+For the total recall and adhoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topic fields may be used.  
 
 A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. The narrative and evidence fields may be used for manual runs, but use of these fields makes the run a manual run, even if all other processing is automatic.
 
@@ -112,7 +112,7 @@ Example run is shown below:
 
 #### Task 1 - Total Recall
 
-**Task Description:** Documents contradiciting the topic's answer are assumed to be misinformation. Participants must identify all documents in a collection that promulgate, promote, and/or support that misinformation. For example, for the example topic above ("Can Ibuprofen worsen COVID-19?"), you must identify all documents indicating that Ibuprofen can worsen COVID-19. Documents making this claim for the purposes of debunking it are not misinformation.
+**Task Description:** Documents contradicting the topic's answer are assumed to be misinformation. Participants must identify all documents in a collection that promulgate, promote, and/or support that misinformation. For example, for the example topic above ("Can Ibuprofen worsen COVID-19?"), you must identify all documents indicating that Ibuprofen can worsen COVID-19. Documents making this claim for the purposes of debunking it are not misinformation.
 
 **Runs:** Runs should rank documents according to the likelihood that they promulgate misinformation. Submission format will follow the standard TREC run format, as specified above. You may submit up to three runs of up to 10,000 ranked documents for each topic.
 
