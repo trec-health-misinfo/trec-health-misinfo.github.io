@@ -49,11 +49,11 @@ $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/04 /pat
 #### Topics
 The track focuses on topics within the consumer health search domain (people seeking health advice online). For TREC 2020 the track will focus on COVID-19. The recent coronavirus crisis represents a good example of uncontrolled proliferation of misinformation, which can have serious consequences on consumer health.
 
-Unlike previous tracks, the assessors will not be creating their own topic statements. Instead, the assessors will be provided with topics that include query, description, answer, narrative, and evidence fields. The query field of each topic is built as a pair of treatment and disease, where for TREC 2020, the disease is always COVID-19. The description is in the form of a questions and is built as a triplet of (treatment, effect, disease) where the effect can be: cause, prevent, worsen, cure, help. Only these terms will be used, so that descriptions are all of the form: "Can X Y COVID-19?", where X is a treatment and Y is one of the five effect terms.
+Unlike previous tracks, the assessors will not be creating their own topic statements. Instead, the assessors will be provided with topics that include title, description, answer, narrative, and evidence fields. The title field of each topic is built as a pair of treatment and disease, where for TREC 2020, the disease is always COVID-19. The description is in the form of a question and is built as a triplet of (treatment, effect, disease) where the effect can be: cause, prevent, worsen, cure, help. Only these terms will be used, so that descriptions are all of the form: "Can X Y COVID-19?", where X is a treatment and Y is one of the five effect terms.
 
-The answer field  is one of "yes" or "no". *You should assume that this field specifies the correct answer for the purposes of this task.* This answer corresponds to the topic writer's best understanding of medical consensus at the time of topic creation, but it is not medical advice, and should not be taken as truth outside of the context of this track. The evidence field contains the URL of a page from the open Web that was used to determine the answer. This page may or may not be part of the corpus.
+The answer field  is one of "yes" or "no". *You should assume that this field specifies the correct answer for the purposes of this task.* This answer corresponds to the topic writer's best understanding of medical consensus at the time of topic creation, but it is not medical advice, and should not be taken as truth outside of the context of this track. The evidence field contains the URL of a page from the open Web that was used to determine this answer. This page may or may not be part of the corpus.
 
-For the total recall task, participants should identify documents contradicting the answer. For the adhoc task, participants should return the most credible and complete information supporting the answer. Note that for many topics the corpus may contain a large number of documents that would be relevant to the query in the traditional topical sense, but which neither support nor contradict the answer.
+For the total recall task, participants should identify documents contradicting the answer. For the adhoc task, participants should return the most credible and complete information supporting the answer. Note that for many topics the corpus may contain a large number of documents that would be relevant in the traditional topical sense, but which neither support nor contradict the answer.
 
 The topics will be provided as `XML` files using the following format:
 
@@ -61,7 +61,7 @@ The topics will be provided as `XML` files using the following format:
 <topics>
 <topic>
 <number>0</number>
-<query>ibuprofen COVID-19</query>
+<title>ibuprofen COVID-19</title>
 <description>Can ibuprofen worsen COVID-19?</description>
 <answer>no</answer>
 <evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7287029</evidence>
@@ -81,6 +81,7 @@ The narrative and evidence fields are intended to aid with assessment and should
 
 ## Runs
 For the total recall and ahdoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topics fields may be used.  
+
 A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. The narrative and evidence fields may be used for manual runs. Any use of these fields makes the run a manual run, even if all other processing is automatic.
 
 Submission format will follow the standard TREC run format as follows:
