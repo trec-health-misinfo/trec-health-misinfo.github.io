@@ -80,9 +80,9 @@ create anxiety and/or cause people to avoid taking the drug.</narrative>
 The narrative and evidence fields are intended to aid with assessment and should not be used for automatic runs. All of the other fields may be used by automatic runs.
 
 ## Runs
-For the total recall and ahdoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topics fields may be used.  
+For the total recall and ahdoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topic fields may be used.  
 
-A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. The narrative and evidence fields may be used for manual runs. Any use of these fields makes the run a manual run, even if all other processing is automatic.
+A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. The narrative and evidence fields may be used for manual runs, but use of these fields makes the run a manual run, even if all other processing is automatic.
 
 Submission format will follow the standard TREC run format as follows:
 
