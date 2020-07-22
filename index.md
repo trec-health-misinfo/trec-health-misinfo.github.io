@@ -32,6 +32,8 @@ This year, we have focused the track specifically on misinformation related to C
 For the TREC Health Misinformation 2020 track, we will be using the documents found in [CommonCrawl News crawl](https://commoncrawl.org/2016/10/news-dataset-available/) from January, 1st 2020 to April 30th, 2020. CommonCrawl News contains news articles from news sites all over the world.  
 The format of the collection follows a standard Web ARChive (WARC) format. Each document in a WARC file contains a WARC header and the raw data from the crawl. To learn more about the format of the collection and examples of the full WARC extract, please see the CommonCrawl website [here](https://commoncrawl.org/the-data/get-started/).
 
+The corpus contains non-English documents. Non-English documents are not relevant, even if the document would be relevant the non-English language.
+
 **Instructions on how to download the collection:** The CC News Crawl is available on AWS S3. You will need the [AWS CLI](https://aws.amazon.com/cli/) to download it.
 In the following, you can find the commands to download the data for all four months (please replace the destination with the intended destination in your machine).
 
