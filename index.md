@@ -30,7 +30,7 @@ This year, we have focused the track specifically on misinformation related to C
 
 #### Corpus
 For the TREC Health Misinformation 2020 track, we will be using the documents found in [CommonCrawl News crawl](https://commoncrawl.org/2016/10/news-dataset-available/) from January, 1st 2020 to April 30th, 2020. CommonCrawl News contains news articles from news sites all over the world.  
-The format of the collection follows a standard Web ARChive (WARC) format. Each document in a WARC file contains a WARC header and the raw data from the crawl. To learn more about the format of the collection and examples of the full WARC extract, please see the CommonCrawl website [here](https://commoncrawl.org/the-data/get-started/).
+The format of the collection follows a standard Web ARChive (WARC) format. Each document in a WARC file contains a WARC header and the raw data from the crawl. To learn more about the format of the collection and examples of the full WARC extract, please see the CommonCrawl website [here](https://commoncrawl.org/the-data/get-started/). 
 
 The corpus contains non-English documents. Non-English documents are not relevant, even if the document would be relevant in that non-English language.
 
@@ -44,7 +44,7 @@ $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/03 /pat
 $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/04 /path/to/local/destination
 ```
 
-**Optional: How to get WET format.** Common Crawl also informally provides a tool to get the text extracts (WET format). WET files contain the extracted plain text with tags (HTML, scripts, etc) removed. Unless you have a reason to do otherwise, we recommend working with these text extracts. If you would like to obtain the WET format for the news crawl, please see the instructions [here](https://groups.google.com/d/msg/common-crawl/hsb90GHq6to/SSVocyq8AAAJ). More information on the WARC and WET file formats can be found [here](https://commoncrawl.org/the-data/get-started/).
+**Optional: How to get WET format.** Common Crawl also informally provides a tool to get the text extracts (WET format). WET files contain the extracted plain text with tags (HTML, scripts, etc) removed. Unless you have a reason to do otherwise, we recommend working with these text extracts. If you would like to obtain the WET format for the news crawl, please see the instructions [here](https://groups.google.com/d/msg/common-crawl/hsb90GHq6to/SSVocyq8AAAJ). More information on the WARC and WET file formats can be found [here](https://commoncrawl.org/the-data/get-started/). If you encounter any problems or need help getting the WET files, please [reach out to us](https://groups.google.com/forum/#!forum/trec-health-misinformation-track). 
 
 **Document Identifier:** The WARC header for each document in a WARC file contains a "WARC-Record-ID" field. For our purposes, the value of the WARC-Record-ID field is considered the document identifier (the "docno").  If you plan to use WET files, please use the WARC-Refers-To field instead.
 
