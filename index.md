@@ -36,6 +36,8 @@ The format of the collection follows a standard Web ARChive (WARC) format. Each 
 
 The corpus contains non-English documents. Non-English documents are not relevant, even if the document would be relevant in that non-English language.
 
+**UPDATE 2020-08-04:** WET format text extracts of the corpus are now [available](https://ir.nist.gov/trec-hmi/) so that you don't have to do the extraction yourself. You should use the active TREC participants password to access them.
+
 **Instructions on how to download the collection:** The CC News Crawl is available on AWS S3. You will need the [AWS CLI](https://aws.amazon.com/cli/) to download it.
 In the following, you can find the commands to download the data for all four months (please replace the destination with the intended destination in your machine).
 
