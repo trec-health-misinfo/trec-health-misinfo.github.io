@@ -4,7 +4,7 @@ layout: default
 
 # TREC Health Misinformation Track (2020)
 
-**CLARIFICATION 2020-08-4** For document identifiers (e.g., <urn:uuid:49ecaf74-b1aa-4563-83a0-c81cece0e284>) you should return only the part after the "urn:uuid:" without angle brackets (i.e., 49ecaf74-b1aa-4563-83a0-c81cece0e284).
+**CLARIFICATION 2020-08-4:** For document identifiers (e.g., <urn:uuid:49ecaf74-b1aa-4563-83a0-c81cece0e284>) you should return only the part after the "urn:uuid:" without angle brackets (i.e., 49ecaf74-b1aa-4563-83a0-c81cece0e284).
 
 **UPDATE 2020-08-04:** WET format text extracts of the corpus are now [available](https://ir.nist.gov/trec-hmi/) so that you don't have to do the extraction yourself. You should use the active TREC participants password to access them.
 
