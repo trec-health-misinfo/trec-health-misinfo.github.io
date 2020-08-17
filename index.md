@@ -137,14 +137,17 @@ Note that this task is more than simply a new definition of what is relevant. Th
 Participating groups will be allowed to submit as many runs as they like, but they need authorization from the Track organizers before submitting more than 10 runs. Not all runs are likely to be used for pooling and groups will likely need to specify a preference ordering for pooling purposes.
 
 **Evaluation:** The final qrels will contain assessments with respect to the following criteria:
-* *Relevance*: whether the document is relevant to the topic;
-* *Credibility*: whether the document is considered credible by the assessor;
-* *Correctness*: whether the document contains correct information with respect to the answer provided in the topic description.
+* *Relevance*: whether the document is relevant to the topic (update this);
+* *Correctness*: whether the document contains correct information with respect to the description and answer fields in the topic;
+* *Credibility*: whether the document is considered credible by the assessor.
 Note that non-relevant documents will not be assessed with respect to credibility and correctness. 
 
-Submitted runs will be evaluated with respect to the three criteria: relevance, credibility, and correctness. We will design specific measures to account for those aspects and to penalize systems which retrieve incorrect documents.
+Submitted runs will be evaluated as follows:
+* We will compute AP and nDCG@10 for each individual aspect; 
+* We will compute CAM and MM instantiated with AP and nDCG@10 (CAM is the mean across aspects computed separately, similarly MM is the harmonic mean across aspects);
+* We will aggregate labels across aspects and compute AP and nDCG@10.
 
-We will also evaluate runs in terms of traditional relevance measures, e.g., nDCG@10 and MAP, with the goal of comparing performance measures between the relevance-only measures and the measures that combine relevance, credibility, and correctness.
+Specific deatails on how to compute evaluation measureses can be found here.
 
 #### Task 3 - Evaluation Meta Task
 Details to be announced later.
