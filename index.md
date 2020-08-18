@@ -139,17 +139,19 @@ Note that this task is more than simply a new definition of what is relevant. Th
 Participating groups will be allowed to submit as many runs as they like, but they need authorization from the Track organizers before submitting more than 10 runs. Not all runs are likely to be used for pooling and groups will likely need to specify a preference ordering for pooling purposes.
 
 **Evaluation:** The final qrels will contain assessments with respect to the following criteria:
-* *Relevance*: whether the document is relevant to the topic (update this);
-* *Correctness*: whether the document contains correct information with respect to the description and answer fields in the topic;
-* *Credibility*: whether the document is considered credible by the assessor.
-Note that non-relevant documents will not be assessed with respect to credibility and correctness. 
+* *Usefulness*: Does the document contain material that the search user might find useful in answering the question?
+* *Answer*: Does the document answer to the question in the description field? If so, is the answer yes or no?
+* *Credibility*: How credible is the document?
+Note that non-useful documents will not be assessed with respect to credibility and wether they provide an answer. 
 
-Submitted runs will be evaluated as follows:
+Answer labels will be mapped to *correctness* by comparing the answer in the document and the topic answer field. If the answer provided by the document is the same in the answer field of the topic, then the document will be considered correct, otherwise it will be not correct.
+
+Submitted runs will be evaluated with respect to usefulness, correctness and credibility:
 * We will compute AP and nDCG@10 for each individual aspect; 
 * We will compute CAM and MM instantiated with AP and nDCG@10 (CAM is the mean across aspects computed separately, similarly MM is the harmonic mean across aspects);
 * We will aggregate labels across aspects and compute AP and nDCG@10.
 
-Specific deatails on how to compute evaluation measureses can be found here.
+Specific details on how to compute evaluation measures can be found [here](https://github.com/trec-decision/trec-decision.github.io/raw/master/docs/Guidelines_TREC2020Misinformation.pdf).
 
 #### Task 3 - Evaluation Meta Task
 Details to be announced later.
