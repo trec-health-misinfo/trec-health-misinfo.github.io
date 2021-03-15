@@ -6,7 +6,8 @@ layout: default
 
 **CLARIFICATION 2020-08-4:** For document identifiers (e.g., \<urn:uuid:49ecaf74-b1aa-4563-83a0-c81cece0e284\>) you should return only the part after the "urn:uuid:" without angle brackets (i.e., 49ecaf74-b1aa-4563-83a0-c81cece0e284).
 
-**UPDATE 2020-08-04:** WET format text extracts of the corpus are now [available](https://ir.nist.gov/trec-hmi/) so that you don't have to do the extraction yourself. You should use the active TREC participants password to access them.
+**UPDATE 2020-08-4:** WET format text extracts of the corpus are now [available](https://ir.nist.gov/trec-hmi/) so that you don't have to do the extraction yourself. You should use the active TREC participants password to access them. 
+**UPDATE 2021-03-15: If you have not already registered for the task you should follow the instructions [here](https://groups.google.com/g/common-crawl/c/hsb90GHq6to/m/SSVocyq8AAAJ) to extract the corpus from scratch.**  
 
 ## Track Overview
 Misinformation represents a key problem when using search engines to guide any decision-making task: Are users able to discern authoritative from unreliable information and correct from incorrect information? This problem is further exacerbated when the search occurs within uncontrolled data collections, such as the web, where information can be unreliable, misleading, highly technical, and can lead to unfounded escalations. Information from search-engine results can significantly influence decisions, and research shows that increasing the amount of incorrect information about a topic presented in a Search Engine Result Page (SERP) can impel users to make incorrect decisions.
@@ -39,6 +40,7 @@ The format of the collection follows a standard Web ARChive (WARC) format. Each 
 The corpus contains non-English documents. Non-English documents are not relevant, even if the document would be relevant in that non-English language.
 
 **UPDATE 2020-08-04:** WET format text extracts of the corpus are now [available](https://ir.nist.gov/trec-hmi/) so that you don't have to do the extraction yourself. You should use the active TREC participants password to access them.
+**UPDATE 2021-03-15: If you have not already registered for the task you should follow the instructions [here](https://groups.google.com/g/common-crawl/c/hsb90GHq6to/m/SSVocyq8AAAJ) to extract the corpus from scratch.** 
 
 **Instructions on how to download the collection:** The CC News Crawl is available on AWS S3. You will need the [AWS CLI](https://aws.amazon.com/cli/) to download it.
 In the following, you can find the commands to download the data for all four months (please replace the destination with the intended destination in your machine).
@@ -50,7 +52,7 @@ $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/03 /pat
 $ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/04 /path/to/local/destination
 ```
 
-**Optional: How to get WET format.** Common Crawl also informally provides a tool to get the text extracts (WET format). WET files contain the extracted plain text with tags (HTML, scripts, etc) removed. Unless you have a reason to do otherwise, we recommend working with these text extracts. If you would like to obtain the WET format for the news crawl, please see the instructions [here](https://groups.google.com/d/msg/common-crawl/hsb90GHq6to/SSVocyq8AAAJ). More information on the WARC and WET file formats can be found [here](https://commoncrawl.org/the-data/get-started/). If you encounter any problems or need help getting the WET files, please [reach out to us](https://groups.google.com/forum/#!forum/trec-health-misinformation-track). 
+**Optional: How to get WET format.** Common Crawl also informally provides a tool to get the text extracts (WET format). WET files contain the extracted plain text with tags (HTML, scripts, etc) removed. Unless you have a reason to do otherwise, we recommend working with these text extracts. If you would like to obtain the WET format for the news crawl, please see the instructions [here](https://groups.google.com/g/common-crawl/c/hsb90GHq6to/m/SSVocyq8AAAJ). More information on the WARC and WET file formats can be found [here](https://commoncrawl.org/the-data/get-started/). If you encounter any problems or need help getting the WET files, please [reach out to us](https://groups.google.com/forum/#!forum/trec-health-misinformation-track). 
 
 **Document Identifier:** The WARC header for each document in a WARC file contains a "WARC-Record-ID" field. For our purposes, the value of the WARC-Record-ID field is considered the document identifier (the "docno").  If you plan to use WET files, please use the WARC-Refers-To field instead.
 
