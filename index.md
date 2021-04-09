@@ -4,6 +4,7 @@ layout: default
 
 # TREC Health Misinformation Track (2021)
 
+**Update**: The 2021 track is still being designed. Keep an eye on our website for the latest updates and make sure you join the [google groups](https://groups.google.com/forum/#!forum/trec-health-misinformation-track)! 
 
 ## Track Overview
 Misinformation represents a key problem when using search engines to guide any decision-making task: Are users able to discern authoritative from unreliable information and correct from incorrect information? This problem is further exacerbated when the search occurs within uncontrolled data collections, such as the web, where information can be unreliable, misleading, highly technical, and can lead to unfounded escalations. Information from search-engine results can significantly influence decisions, and research shows that increasing the amount of incorrect information about a topic presented in a Search Engine Result Page (SERP) can impel users to make incorrect decisions.
