@@ -101,6 +101,7 @@ Submitted runs will be evaluated with respect to the three criteria: usefulness,
 We will also evaluate runs in terms of traditional relevance measures, e.g., nDCG@10 and MAP, with the goal of comparing performance measures between the relevance-only measures and the measures that combine usefulness, credibility, and correctness.  
 
 #### Task 3 - Evaluation Meta Task
+Details forthcoming.
 
 
 ## Organizers
