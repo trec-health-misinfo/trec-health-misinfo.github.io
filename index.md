@@ -30,8 +30,16 @@ The 2021 track is still being designed. Please bookmark this page to keep up to 
 
 #### Corpus
 
+The id for each document is the <file#.line#> where the lines start at zero.
 
-To be announced.
+You can donwload the corpus on a Debian/Ubuntu machine using the following commands.
+```
+sudo apt-get install git-lfs 
+git lfs install
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/allenai/c4
+cd c4
+git lfs pull --include="en.noclean/*"
+```
 
 
 #### Topics
