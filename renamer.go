@@ -1,8 +1,18 @@
+// This script can be used to insert docnos into the c4 no clean collection
+// It takes a path argument that should point to the root of the c4 git repo
+// It will insert a docno field into the training documents in c4 no clean
+// and write them into a new directory called en.noclean.withdocnos
+// The docno of a document will be "c4nc-<file_number>-<line_number>"
+// line_number starts at zero for each file
+// file_number is taken from the file's name
+// e.g. the document on the second line of file c4-train.01234-of-07168.json.gz
+// would have a docno of c4nc-1234-00001
+// To run, place script in an empty directory then
+// run `go init` and then `go run main.go -path <path to c4>` in your terminal
+
 package main
 
 import (
-
-	// "compress/gzip"
 	"bufio"
 	"flag"
 	"fmt"
@@ -15,14 +25,18 @@ import (
 	"github.com/schollz/progressbar/v3"
 )
 
+func insert_docno(file_number string, line_number int, document string) string {
+	return fmt.Sprintf("{\"docno\":\"c4nc-%s-%05d\",%s", file_number[1:], line_number, document[1:])
+}
+
 func main() {
 	path := flag.String("path", ".", "Path to C4 repo.")
-	pattern := flag.String("pattern", "*****", "File pattern to match.")
+	pattern := flag.String("pattern", "*****", "File pattern to match if you wish to insert docnos into a subset of the collection")
 	blocks := flag.Int("blocks", 4, "# of gzip blocks being written in parallel.")
 	flag.Parse()
 
 	f, err := os.OpenFile("text.log",
-	os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Println(err)
 	}
@@ -36,30 +50,30 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 	}
 
-	count := len(files)
+	total_files := len(files)
 
-	bar := progressbar.Default(int64(count))
+	bar := progressbar.Default(int64(total_files))
 
-	for _, file := range files {
-		file_number := file[len(file)-22 : len(file)-22+5]
+	for _, file_name := range files {
+		file_number := file_name[len(file_name)-22 : len(file_name)-22+5]
 
-		fi, err := os.Open(file)
+		fi, err := os.Open(file_name)
 		if err != nil {
-			logger.Println(os.Stderr, "Error reading: ", file_number, "\n", err)
+			logger.Println("Error reading: ", file_number, "\n", err)
 			continue
 		}
 
 		gr, err := gzip.NewReader(fi)
 		if err != nil {
-			logger.Println(os.Stderr, "Error reading: ", file_number, "\n", err)
+			logger.Println("Error reading: ", file_number, "\n", err)
 			continue
 		}
 
 		br := bufio.NewReader(gr)
 
-		new_file := fmt.Sprintf("%s/en.noclean.withdocnos/%s", *path, file[len(file)-31:])
+		new_file_name := fmt.Sprintf("%s/en.noclean.withdocnos/%s", *path, file_name[len(file_name)-31:])
 
-		fo, err := os.Create(new_file)
+		fo, err := os.Create(new_file_name)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -67,22 +81,22 @@ func main() {
 		gw := gzip.NewWriter(fo)
 		gw.SetConcurrency(100000, *blocks)
 
-		i := 0
+		line_number := 0
 		for {
-			line, err := br.ReadString('\n')
+			document, err := br.ReadString('\n')
 			if err != nil && err != io.EOF {
-				logger.Println(os.Stderr, "Error reading: ", file_number, "\n", err)
+				logger.Println("Error reading: ", file_number, "\n", err)
 				break
 			}
 			if err != nil && err == io.EOF {
 				break
 			}
-			new_line := fmt.Sprintf("{\"docno\":\"%s.%05d\",%s", file_number, i, line[1:])
+			new_line := insert_docno(file_number, line_number, document)
 			_, err = gw.Write([]byte(new_line))
 			if err != nil {
-				logger.Println(os.Stderr, "Error writing:", file_number, "\n", err)
+				logger.Println("Error writing:", file_number, "\n", err)
 			}
-			i += 1
+			line_number += 1
 		}
 		gw.Close()
 		fo.Close()
@@ -92,4 +106,3 @@ func main() {
 	}
 	bar.Close()
 }
-
