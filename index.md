@@ -19,8 +19,8 @@ The 2021 track is still being designed. Please bookmark this page to keep up to 
 
 ## Tentative Schedule
 * **June-July 2021** Topics will be released;
-* **September, 2021** Runs due;
-* **September 30 2021** Results returned;
+* **September 2, 2021** Runs due;
+* **End of September 2021** Results returned;
 * **October 2021** Notebook paper due;
 * **November 17-19, 2021** TREC Conference;
 * **February 2022** Final report due.
