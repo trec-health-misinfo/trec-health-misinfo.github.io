@@ -29,7 +29,7 @@ The 2021 track is still being designed. Please bookmark this page to keep up to 
 ## Collection
 
 #### Corpus
-This year we wil be using the uncleaned version of the uncleaned C4 dataset used by Google to train their T5 model. The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains ~1B english documents.
+This year we wil be using the uncleaned version of the uncleaned C4 dataset used by Google to train their T5 model. The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains ~1B English documents.
 
 You can download the corpus on a Debian/Ubuntu machine using the following commands.
 ```
@@ -48,7 +48,7 @@ One way to insert document identifiers is by using the [provided script](renamer
 Topics are still being created.
 
 ## Runs
-For the total recall and adhoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topic fields may be used.  
+For the adhoc task, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topic fields may be used.  
 
 A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. The narrative and evidence fields may be used for manual runs, but use of these fields makes the run a manual run, even if all other processing is automatic.
 
@@ -76,15 +76,7 @@ Example run is shown below:
 
 ## Tasks
 
-#### Task 1 - Total Recall
-
-**Task Description:** Documents contradicting the topic's answer are assumed to be misinformation. Participants must identify all documents in a collection that promulgate, promote, and/or support that misinformation. For example, for the example topic "Can aspirin improve the lives of people with vascular dementia?", you must identify all documents indicating that Asprin can help to improve the vascular system and benefit people with dementia. Documents making this claim for the purposes of debunking it are not misinformation.
-
-**Runs:** Runs should rank documents according to the likelihood that they promulgate misinformation. Submission format will follow the standard TREC run format, as specified above. You may submit up to three runs of up to 10,000 ranked documents for each topic.
-
-**Evaluation:** Runs will be compared using *gain curves*, which plots recall as a function of rank. The primary metric is R-precision, or equivalently, R-recall, the recall achieved at rank R, where R is the number of positively labeled documents in the collection.
-
-#### Task 2 - AdHoc Retrieval
+#### Task 1 - AdHoc Retrieval
 
 **Task Description:** Participants devise search technologies that promote credible and correct information over incorrect information, with the assumption that correct information can better lead people to make correct decisions.
 
@@ -99,15 +91,15 @@ Participating groups will be allowed to submit as many runs as they like, but th
 **Evaluation:**
 The final qrels will contain assessments with respect to the following criteria:
 * *Usefulness*: whether the document document contains information that a search user would find useful in answering the topic's question;  
-* *Correctness*: whether the document contains a definitive and correct answer to the topic's question;
+* *Supportiveness*: whether the document supports/dissuades the use of the treatment in the topic's question;
 * *Credibility*: whether the document is considered credible by the assessor;
-Note that not-useful documents will not be assessed with respect to credibility and correctness. 
+Note that not-useful documents will not be assessed with respect to credibility and supportiveness. 
 
-Submitted runs will be evaluated with respect to the three criteria: usefulness, correctness, and credibility. We will design specific measures to account for those aspects and to penalize systems which retrieve incorrect documents.
+Submitted runs will be evaluated with respect to the three criteria: usefulness, supportiveness, and credibility. We will be using the [compatibility](https://github.com/claclark/Compatibility) measure in a similar fashion as we did in the 2020 version of this track (See [overview paper](https://trec.nist.gov/pubs/trec29/papers/OVERVIEW.HM.pdf) for more details). 
 
-We will also evaluate runs in terms of traditional relevance measures, e.g., nDCG@10 and MAP, with the goal of comparing performance measures between the relevance-only measures and the measures that combine usefulness, credibility, and correctness.  
+Details of the assessing instructions will be published after they are finalized. 
 
-#### Task 3 - Evaluation Meta Task
+#### Task 2 - Evaluation Meta Task
 Details forthcoming.
 
 
