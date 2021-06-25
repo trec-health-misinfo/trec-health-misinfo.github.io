@@ -30,7 +30,7 @@ The 2021 track is still being designed. Please bookmark this page to keep up to 
 ## Collection
 
 #### Corpus
-This year we wil be using the uncleaned version of the uncleaned C4 dataset used by Google to train their T5 model. The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains \sim1B English documents.
+This year we wil be using the uncleaned version of the uncleaned C4 dataset used by Google to train their T5 model. The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains \~ 1B English documents.
 
 You can download the corpus on a Debian/Ubuntu machine using the following commands.
 ```
@@ -40,7 +40,7 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/allenai/c4
 cd c4
 git lfs pull --include="en.noclean/c4-train*"
 ```
-The collection is made up of the 7168 gzipped jsonl files located in the en.nolean directory. Each file containes \sim150k documents, one in each line. A document is a json object with the fields `text`, `url` and `timestamp`. They do not contain a document identifier. The document identifier for each document will be the "c4nc-<file#>-<line#>". <file#> is 4 digits and <line#> is 5 digits. <line#> start at zero for each file and <file#> can be derived from the file names. For example, the document on the second line of file c4-train.01234-of-07168.json.gz would have a docno of c4nc-1234-00001.
+The collection is made up of the 7168 gzipped jsonl files located in the en.nolean directory. Each file containes \~150k documents, one in each line. A document is a json object with the fields `text`, `url` and `timestamp`. They do not contain a document identifier. The document identifier for each document will be the "c4nc-<file#>-<line#>". <file#> is 4 digits and <line#> is 5 digits. <line#> start at zero for each file and <file#> can be derived from the file names. For example, the document on the second line of file c4-train.01234-of-07168.json.gz would have a docno of c4nc-1234-00001.
 
 One way to insert document identifiers is by using the [provided script](renamer.go). Another would be name the documents as you index them.
 
