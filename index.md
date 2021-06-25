@@ -18,6 +18,7 @@ The 2021 track is still being designed. Please bookmark this page to keep up to 
 <!--#### These guidelines are still in draft form. We invite comments and suggested changes from participants. We plan to finalize the guidelines on June 5, 2020.-->
 
 ## Tentative Schedule
+* **~~June 21, 2021~~** Corpus Released;
 * **June-July 2021** Topics will be released;
 * **September 2, 2021** Runs due;
 * **End of September 2021** Results returned;
