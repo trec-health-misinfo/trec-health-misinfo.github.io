@@ -8,7 +8,7 @@
 // e.g. the document on the second line of file c4-train.01234-of-07168.json.gz
 // would have a docno of c4nc-1234-00001
 // To run, place script in an empty directory then
-// run `go init` and then `go run main.go -path <path to c4>` in your terminal
+// use `go mod init` and then `go run main.go -path <path to c4>` in your terminal
 
 package main
 
