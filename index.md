@@ -68,11 +68,9 @@ where:
 The fields should be spectated with a whitespace. The width of the columns in the format is not important, but it is important to include all columns and have some amount of white space between the columns.
 Example run is shown below:
 ```
-1 Q0 doc-1018wb-57-17875 1 14.8928003311 myGroupNameMyMethodName
-1 Q0 doc-1311wb-18-06089 2 14.7590999603 myGroupNameMyMethodName
-1 Q0 doc-1113wb-13-13513 3 14.5707998276 myGroupNameMyMethodName
-1 Q0 doc-1200wb-47-01250 4 14.5642995834 myGroupNameMyMethodName
-1 Q0 doc-0205wb-37-09270 5 14.3723001481 myGroupNameMyMethodName
+1 Q0 c4nc-4124-069102 1 14.8928003311 myGroupNameMyMethodName
+1 Q0 c4nc-3346-052165 2 14.7590999603 myGroupNameMyMethodName
+1 Q0 c4nc-3904-054203 3 14.5707998276 myGroupNameMyMethodName
 ...
 ```
 
