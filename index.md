@@ -44,7 +44,27 @@ One way to insert document identifiers is by using the [provided script](renamer
 
 #### Topics
 
-To be released.
+**To be released.**
+
+Topics are authored by the track organizers.  The NIST assessors will be provided the topic's query, description, and narrative and be asked to make judgments as per the assessing guidelines.
+
+The topics will be provided as XML files using the following format:
+
+```xml
+<topics>
+  <topic>
+    <number>1234</number>
+    <query>dexamethasone croup</query>
+    <description>Can dexamethasone treat croup?</description>
+    <stance>helpful</stance>
+    <evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5804741/</evidence>
+    <narrative>Croup is an infection of the upper airway and causes swelling, which obstructs breathing and leads to a barking cough. As one kind of corticosteroids, dexamethasone can weaken the immune response and therefore mitigate symptoms such as swelling. A very useful document would discuss the effectiveness of dexamethasone for croup. A useful document would provide information on recommended treatments for croup or medical benefits of dexamethasone or both.</narrative>
+  </topic>
+<topic>
+...
+</topic>
+</topics>
+```
 
 #### Evaluation
 
