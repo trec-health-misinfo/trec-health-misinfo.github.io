@@ -20,7 +20,7 @@ Track annoucements are made via [google groups](https://groups.google.com/forum/
 
 **Task Description:** Participants devise search technologies that promote credible and correct information over incorrect information, with the assumption that correct information can better lead people to make correct decisions.
 
-Each topic concerns itself with a health issue and a treatment for that issue.  The topics represent a user who is looking for information that is useful for making a decision about whether about whether or not the treatment is helpful or unhelpful for treating the health issue.  Better search result rankings will place very useful documents that are credible and correct at the top of ranking, and will not return incorrect information.  In this search task, incorrect information is considered harmful and should not be returned.  
+Each topic concerns itself with a health issue and a treatment for that issue.  The topics represent a user who is looking for information that is useful for making a decision about whether or not the treatment is helpful or unhelpful for treating the health issue.  Better search result rankings will place very useful documents that are credible and correct at the top of ranking, and will not return incorrect information.  In this search task, incorrect information is considered harmful and should not be returned.  
 
 For each topic, we have chosen a 'stance' for the topic on whether the treatment is helpful or unhelpful for the health issue.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the stance we have chosen.**  If a treatment is considered 'helpful', then correct documents will those construed to be supportive of the treatment and incorrect documents will be those that would disuade the searcher from the treatment.  Likewise, an 'unhelpful' treatment should return documents that disuade the searcher from using the treatment and should avoid returning documents that are supportive of using the treatment.  For each topic, we have included an `evidence` link for a webpage that the topic author used as the basis for the topic's stance.  
 
@@ -38,7 +38,7 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/allenai/c4
 cd c4
 git lfs pull --include="en.noclean/c4-train*"
 ```
-The collection is made up of the 7168 gzipped jsonl files located in the en.nolean directory.  We are using only the `c4-train.*.json.gz` files and not the `c4-validation.*.json.gz` files.  Each file containes \~150k documents, and has one document per line. A document is a json object with the fields `text`, `url` and `timestamp`. As packaged in c4.noclean, documents do not contain a document identifier. The document identifier ("docno") for each document will be `c4nc-<file#>-<line#>`, where `<file#>` is 4 digits and `<line#>` is 5 digits.  Both `<file#>` and `<line#>` are padded with zeros. We number lines (`<line#>`) in a file starting at 0. The `<file#>` is taken from from the file name. For example, the document on the second line of file c4-train.01234-of-07168.json.gz would have a docno of c4nc-1234-00001.
+The collection is made up of the 7168 gzipped jsonl files located in the en.nolean directory.  We are using only the `c4-train.*.json.gz` files and not the `c4-validation.*.json.gz` files.  Each file containes \~150k documents, and has one document per line. A document is a json object with the fields `text`, `url` and `timestamp`. As packaged in c4.noclean, documents do not contain a document identifier. The document identifier ("docno") for each document will be `c4nc-<file#>-<line#>`, where `<file#>` is 4 digits and `<line#>` is 5 digits.  Both `<file#>` and `<line#>` are padded with zeros. We number lines (`<line#>`) in a file starting at 0. The `<file#>` is taken from the file name. For example, the document on the second line of file c4-train.01234-of-07168.json.gz would have a docno of c4nc-1234-00001.
 
 One way to insert document identifiers is by using the [provided script](renamer.go). Another would be name the documents as you index them.
 
@@ -89,7 +89,7 @@ Runs may be either automatic or manual.
 
 *Manual runs:* A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. All topic fields may be used for manual runs.  We encourage manual runs in addition to automatic runs.  
 
-Submission format for runs will follow the standard TREC run format.  For each topic, please return 1,000 ranked documents.  The standard TREC run format is as follows:
+Submission format for runs will follow the standard TREC run format.  For each topic, please return 1,000 ranked documents. The standard TREC run format is as follows:
 
 ```
 qid Q0 docno rank score tag
