@@ -3,7 +3,7 @@ Script to add docnos to files in c4/no.clean
 To process all files:
 python renamer.py --path <path-to-c4-repo>
 To process a subset, e.g. the first 20 files:
-python renamer.py --path ~/group-data/c4 --pattern 000[01]?
+python renamer.py --path <path-to-c4-repo> --pattern 000[01]?
 """
 import argparse
 import glob
