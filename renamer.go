@@ -26,7 +26,7 @@ import (
 )
 
 func insert_docno(file_number string, line_number int, document string) string {
-	return fmt.Sprintf("{\"docno\":\"c4nc-%s-%05d\",%s", file_number[1:], line_number, document[1:])
+	return fmt.Sprintf("{\"docno\":\"c4nc-%s-%06d\",%s", file_number[1:], line_number, document[1:])
 }
 
 func main() {
