@@ -97,7 +97,7 @@ qid Q0 docno rank score tag
 where:
 * `qid`: the topic number;
 * `Q0`: unused and should always be Q0;
-* `docno`: the official document id number returned by your system for the topic `qid`;
+* `docno`: the document id number returned by your system for the topic `qid` (See above for more details on how docnos should be constructed it); 
 * `ran`: the rank the document is retrieved;
 * `score`: the score (integer or floating point) that generated the ranking. The score must be in descending (non-increasing) order. The score is important to handle tied scores. (`trec_eval` sorts documents by the specified scores values and not your ranks values);
 * `tag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.
