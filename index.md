@@ -123,7 +123,7 @@ An example run is shown below:
 This year, we will only have the ad-hoc retrieval task.  We will consider adding back in the other tasks in future years.  
 
 ## Schedule
-* **June 21, 2021** Collection released;
+* ~~**June 21, 2021**~~ Collection released;
 * **July 2021** Topics will be released;
 * **September 2, 2021** Runs due;
 * **End of September 2021** Results returned;
