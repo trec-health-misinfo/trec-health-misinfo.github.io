@@ -38,9 +38,15 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/allenai/c4
 cd c4
 git lfs pull --include="en.noclean/c4-train*"
 ```
-The collection is made up of the 7168 gzipped jsonl files located in the en.nolean directory.  We are using only the `c4-train.*.json.gz` files and not the `c4-validation.*.json.gz` files.  Each file containes \~150k documents, and has one document per line. A document is a json object with the fields `text`, `url` and `timestamp`. As packaged in c4.noclean, documents do not contain a document identifier. The document identifier ("docno") for each document will be `c4nc-<file#>-<line#>`, where `<file#>` is 4 digits and `<line#>` is 6 digits.  Both `<file#>` and `<line#>` are padded with zeros. We number lines (`<line#>`) in a file starting at 0. The `<file#>` is taken from the file name. For example, the document on the second line of file c4-train.01234-of-07168.json.gz would have a docno of c4nc-1234-000001.
+The collection is made up of the 7168 gzipped jsonl files located in the en.nolean directory.  We are using only the `c4-train.*.json.gz` files and not the `c4-validation.*.json.gz` files.  Each file containes \~150k documents, and has one document per line. A document is a json object with the fields `text`, `url` and `timestamp`. As packaged in c4.noclean, documents do not contain a document identifier. For this TREC track we will be adding our own document identifiers to the collection.
 
-One way to insert document identifiers is by using the provided [python](renamer.py) or [go](renamer.go) scripts. Another would be name the documents as you index them.
+The docno spec is as follows:
+
+For documents inside files `c4/en.noclean/c4-train.?????-of-07168.json.gz`, the docno wil be `en.noclean.c4-train.?????-of-07168.<N>` where <N> is the line number of the document starting at 0. This goes for all 7168 training files in the path c4/en.noclean/.
+
+So for example, in the file `en.noclean.c4-train.01234-of-07168` the first document's identifier will be `en.noclean.c4-train.01234-of-07168.0`, the second document's identifier will be `en.noclean.c4-train.01234-of-07168.1` and the last documents document's identifier will be `en.noclean.c4-train.01234-of-07168.148409`.
+
+One way to insert document identifiers is by using the provided [python script](renamer.py). Another would be name the documents as you index them.
 
 #### Topics
 
