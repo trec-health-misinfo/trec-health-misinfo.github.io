@@ -18,7 +18,7 @@ path = args.path
 
 
 def new_docno(file_number, line_number):
-    return f'c4nc-{file_number[1:]}-{line_number:06}'
+    return f'en.noclean.c4-train.{file_number}-of-07168.{line_number}'
 
 
 files = sorted(list(glob.iglob(f'{path}/en.noclean/c4-train.{pattern}-of-07168.json.gz')))
