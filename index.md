@@ -44,7 +44,7 @@ The docno spec is as follows:
 
 For documents inside files `c4/en.noclean/c4-train.?????-of-07168.json.gz`, the docno wil be `en.noclean.c4-train.?????-of-07168.<N>` where <N> is the line number of the document starting at 0. This goes for all 7168 training files in the path c4/en.noclean/.
 
-So for example, in the file `en.noclean.c4-train.01234-of-07168` the first document's identifier will be `en.noclean.c4-train.01234-of-07168.0`, the second document's identifier will be `en.noclean.c4-train.01234-of-07168.1` and the last document's identifier will be `en.noclean.c4-train.01234-of-07168.148409`.
+So for example, in the file `en.noclean.c4-train.01234-of-07168.json.gz` the first document's identifier will be `en.noclean.c4-train.01234-of-07168.0`, the second document's identifier will be `en.noclean.c4-train.01234-of-07168.1` and the last document's identifier will be `en.noclean.c4-train.01234-of-07168.148409`.
 
 One way to insert document identifiers is by using the provided [python script](renamer.py). Another would be name the documents as you index them.
 
