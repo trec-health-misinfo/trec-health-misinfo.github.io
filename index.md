@@ -112,9 +112,9 @@ The fields should be separated with a space.
 
 An example run is shown below:
 ```
-1 Q0 c4nc-4124-069102 1 14.8928003311 myGroupNameMyMethodName
-1 Q0 c4nc-3346-052165 2 14.7590999603 myGroupNameMyMethodName
-1 Q0 c4nc-3904-054203 3 14.5707998276 myGroupNameMyMethodName
+1 Q0 en.noclean.c4-train.04124-of-69102 1 14.8928003311 myGroupNameMyMethodName
+1 Q0 en.noclean.c4-train.03346-of-52165 2 14.7590999603 myGroupNameMyMethodName
+1 Q0 en.noclean.c4-train.03904-of-54203 3 14.5707998276 myGroupNameMyMethodName
 ...
 ```
 
