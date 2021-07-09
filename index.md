@@ -42,7 +42,7 @@ The collection is made up of the 7168 gzipped jsonl files located in the en.nole
 
 The docno spec is as follows:
 
-For documents inside files `c4/en.noclean/c4-train.?????-of-07168.json.gz`, the docno wil be `en.noclean.c4-train.?????-of-07168.<N>` where <N> is the line number of the document starting at 0. This goes for all 7168 training files in the path c4/en.noclean/.
+For documents inside files `c4/en.noclean/c4-train.?????-of-07168.json.gz`, the docno wil be `en.noclean.c4-train.?????-of-07168.<N>` where `<N>` is the line number of the document starting at 0. This goes for all 7168 training files in the path c4/en.noclean/.
 
 So for example, in the file `en.noclean.c4-train.01234-of-07168.json.gz` the first document's identifier will be `en.noclean.c4-train.01234-of-07168.0`, the second document's identifier will be `en.noclean.c4-train.01234-of-07168.1` and the last document's identifier will be `en.noclean.c4-train.01234-of-07168.148409`.
 
