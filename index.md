@@ -61,10 +61,10 @@ The topics will be provided as XML files using the following format:
   <topic>
     <number>1234</number>
     <query>dexamethasone croup</query>
-    <description>Can dexamethasone treat croup?</description>
+    <description>Is dexamethasone a good treatment for croup?</description>
     <stance>helpful</stance>
     <evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5804741/</evidence>
-    <narrative>Croup is an infection of the upper airway and causes swelling, which obstructs breathing and leads to a barking cough. As one kind of corticosteroids, dexamethasone can weaken the immune response and therefore mitigate symptoms such as swelling. A very useful document would discuss the effectiveness of dexamethasone for croup. A useful document would provide information on recommended treatments for croup or medical benefits of dexamethasone or both.</narrative>
+    <narrative>Croup is an infection of the upper airway and causes swelling, which obstructs breathing and leads to a barking cough. As one kind of corticosteroids, dexamethasone can weaken the immune response and therefore mitigate symptoms such as swelling. A very useful document would discuss the effectiveness of dexamethasone for croup, i.e. a very useful document specifically addresses or answers the search topic's question. A useful document would provide information that would help a user make a decision about treating croup with dexamethasone, and may discuss either separately or jointly: croup, recommended treatments for croup, the pros and cons of dexamethasone, etc.</narrative>
   </topic>
 <topic>
 ...
@@ -75,7 +75,7 @@ The topics will be provided as XML files using the following format:
 #### Evaluation
 
 The final qrels will contain assessments with respect to the following criteria:
-* *Usefulness*: The extent to which the document contains information that a search user would find useful in answering the topic's question.  Three levels: 0. Not useful. 1.  Useful: User would find the document useful for the topic because it provides useful information about the health issue, the treatment, or both. 2. Very useful: User finds the document very useful because it specifically talks about the use of the treatment for the health issue, or provides strong guidance about the health treatment regardless of the health issue.
+* *Usefulness*: The extent to which the document contains information that a search user would find useful in answering the topic's question.  Three levels: 0. Not useful. 1.  Useful: User would find the document useful for the topic because it would help the user make a decision about the search topic by providing information about the health issue, the treatment, or both. Merely mentioning the health issue or the treatment is not sufficient. To be useful, the user needs to find the document helps in some way make a decision about the topic. 2. Very useful: User finds the document very useful because it specifically talks about the use of the treatment for the health issue, or provides strong guidance about the health treatment regardless of the health issue.
 * *Supportiveness*: Does the document support or dissuade the use of the treatment in the topic's question?  Three levels: 1. Supportive: The document would support a decision to use the treatment.  0. Neutral: The document neither supports or dissuades use of the treatment. -1. Dissuades: The document would dissuade a user to not use the treatment.
 * *Credibility*: whether the document is considered credible by the assessor. 0. Not credible.  1. Credible.
 
