@@ -64,7 +64,16 @@ The topics will be provided as XML files using the following format:
     <description>Is dexamethasone a good treatment for croup?</description>
     <stance>helpful</stance>
     <evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5804741/</evidence>
-    <narrative>Croup is an infection of the upper airway and causes swelling, which obstructs breathing and leads to a barking cough. As one kind of corticosteroids, dexamethasone can weaken the immune response and therefore mitigate symptoms such as swelling. A very useful document would discuss the effectiveness of dexamethasone for croup, i.e. a very useful document specifically addresses or answers the search topic's question. A useful document would provide information that would help a user make a decision about treating croup with dexamethasone, and may discuss either separately or jointly: croup, recommended treatments for croup, the pros and cons of dexamethasone, etc.</narrative>
+    <narrative>Croup is an infection of the upper airway and causes swelling, 
+      which obstructs breathing and leads to a barking cough. As one kind of 
+      corticosteroids, dexamethasone can weaken the immune response and 
+      therefore mitigate symptoms such as swelling. A very useful document 
+      would discuss the effectiveness of dexamethasone for croup, i.e. a very 
+      useful document specifically addresses or answers the search topic's 
+      question. A useful document would provide information that would help 
+      a user make a decision about treating croup with dexamethasone, and 
+      may discuss either separately or jointly: croup, recommended treatments 
+      for croup, the pros and cons of dexamethasone, etc.</narrative>
   </topic>
 <topic>
 ...
