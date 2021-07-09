@@ -46,7 +46,7 @@ For documents inside files `c4/en.noclean/c4-train.?????-of-07168.json.gz`, the 
 
 So for example, in the file `en.noclean.c4-train.01234-of-07168.json.gz` the first document's identifier will be `en.noclean.c4-train.01234-of-07168.0`, the second document's identifier will be `en.noclean.c4-train.01234-of-07168.1` and the last document's identifier will be `en.noclean.c4-train.01234-of-07168.148409`.
 
-One way to insert document identifiers is by using the provided [python script](renamer.py). Another would be name the documents as you index them.
+One way to insert document identifiers is by using the provided [python script](renamer.py). Another would be to name the documents as you index them.
 
 #### Topics
 
