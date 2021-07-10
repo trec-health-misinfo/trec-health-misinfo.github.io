@@ -22,7 +22,7 @@ def new_docno(file_number, line_number):
 
 
 files = sorted(list(glob.iglob(f'{path}/en.noclean/c4-train.{pattern}-of-07168.json.gz')))
-count = len(files)
+
 for filepath in files:
     with gzip.open(filepath) as f:
         file_number = filepath[-22:-22 + 5]
