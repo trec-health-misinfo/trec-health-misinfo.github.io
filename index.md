@@ -22,7 +22,7 @@ Track annoucements are made via [google groups](https://groups.google.com/forum/
 
 Each topic concerns itself with a health issue and a treatment for that issue.  The topics represent a user who is looking for information that is useful for making a decision about whether or not the treatment is helpful or unhelpful for treating the health issue.  Better search result rankings will place very useful documents that are credible and correct at the top of ranking, and will not return incorrect information.  In this search task, incorrect information is considered harmful and should not be returned.  
 
-For each topic, we have chosen a 'stance' for the topic on whether the treatment is helpful or unhelpful for the health issue.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the stance we have chosen.**  If a treatment is considered 'helpful', then correct documents will those construed to be supportive of the treatment and incorrect documents will be those that would disuade the searcher from the treatment.  Likewise, an 'unhelpful' treatment should return documents that disuade the searcher from using the treatment and should avoid returning documents that are supportive of using the treatment.  For each topic, we have included an `evidence` link for a webpage that the topic author used as the basis for the topic's stance.  
+For each topic, we have chosen a 'stance' for the topic on whether the treatment is helpful or unhelpful for the health issue.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the stance we have chosen.  Consult a medical doctor for professional advice.**  If a treatment is considered 'helpful', then correct documents will those construed to be supportive of the treatment and incorrect documents will be those that would disuade the searcher from the treatment.  Likewise, an 'unhelpful' treatment should return documents that disuade the searcher from using the treatment and should avoid returning documents that are supportive of using the treatment.  For each topic, we have included an `evidence` link for a webpage that the topic author used as the basis for the topic's stance.  
 
 The primary ad-hoc task is to use the topic's `query` or `description` for a topic and return a ranking of documents without use of any of the other topic fields.  Manual runs may also make use of the other fields of the topic, e.g. the `stance` and `evidence` fields, but these runs will need to declare the use of this data to allow us to distinguish them from the primary task.
 
@@ -103,8 +103,6 @@ The topics will be provided as XML files using the following format:
     <number>1234</number>
     <query>dexamethasone croup</query>
     <description>Is dexamethasone a good treatment for croup?</description>
-    <stance>helpful</stance>
-    <evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5804741/</evidence>
     <narrative>Croup is an infection of the upper airway and causes swelling, 
       which obstructs breathing and leads to a barking cough. As one kind of 
       corticosteroids, dexamethasone can weaken the immune response and 
@@ -115,6 +113,11 @@ The topics will be provided as XML files using the following format:
       a user make a decision about treating croup with dexamethasone, and 
       may discuss either separately or jointly: croup, recommended treatments 
       for croup, the pros and cons of dexamethasone, etc.</narrative>
+    <disclaimer>We do not claim to be providing medical advice, and medical 
+      decisions should never be made based on the stance we have chosen.  
+      Consult a medical doctor for professional advice.</disclaimer>
+    <stance>helpful</stance>
+    <evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5804741/</evidence>
   </topic>
 <topic>
 ...
