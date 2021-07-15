@@ -91,7 +91,7 @@ for filepath in files:
 
 #### Topics
 
-**To be released.**
+**Topics are released and available in the active participants part of the TREC website:** https://trec.nist.gov/act_part/tracks/misinfo/misinfo-2021-topics.xml 
 
 Topics are authored by the track organizers.  The NIST assessors will be provided the topic's query, description, and narrative and be asked to make judgments as per the assessing guidelines.
 
@@ -177,7 +177,7 @@ This year, we will only have the ad-hoc retrieval task.  We will consider adding
 
 ## Schedule
 * ~~**June 21, 2021**~~ Collection released;
-* **July 2021** Topics will be released;
+* **July 14 2021** Topics released;
 * **September 2, 2021** Runs due;
 * **End of September 2021** Results returned;
 * **October 2021** Notebook paper due;
