@@ -28,7 +28,7 @@ The primary ad-hoc task is to use the topic's `query` or `description` for a top
 
 #### Document Collection
 
-This year we wil be using the [**noclean** version of the C4 dataset](https://huggingface.co/datasets/allenai/c4) used by [Google to train their T5 model](https://www.tensorflow.org/datasets/catalog/c4). The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains \~ 1B English documents.
+This year we will be using the [**noclean** version of the C4 dataset](https://huggingface.co/datasets/allenai/c4) used by [Google to train their T5 model](https://www.tensorflow.org/datasets/catalog/c4). The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains \~ 1B English documents.
 
 You can download the corpus on a Debian/Ubuntu machine using the following commands ([see HuggingFace for further information](https://huggingface.co/datasets/allenai/c4)).
 ```
