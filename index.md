@@ -93,7 +93,7 @@ for filepath in files:
 
 **Topics are released and available in the active participants part of the TREC website:** https://trec.nist.gov/act_part/tracks/misinfo/misinfo-2021-topics.xml 
 
-Topics are authored by the track organizers.  The NIST assessors will be provided the topic's query, description, and narrative and be asked to make judgments as per the assessing guidelines.
+Topics are authored by the track organizers.  The NIST assessors will be provided the topic's query, description, and narrative and be asked to make judgments as per the [assessing guidelines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf).
 
 The topics will be provided as XML files using the following format:
 
@@ -136,7 +136,7 @@ The final qrels will contain assessments with respect to the following criteria:
 
 Submitted runs will be evaluated with respect to the three criteria: usefulness, correctness, and credibility. We will be using the [compatibility](https://github.com/claclark/Compatibility) measure in a similar fashion as we did in the 2020 version of this track (See [overview paper](https://trec.nist.gov/pubs/trec29/papers/OVERVIEW.HM.pdf) for more details). 
 
-Details of the assessing instructions will be published after they are finalized. 
+For more details, you can read the [2021 assessing guidlines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf) as used by NIST.
 
 #### Runs 
 
