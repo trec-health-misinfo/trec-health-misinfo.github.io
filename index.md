@@ -2,7 +2,9 @@
 layout: default
 ---
 
-# TREC Health Misinformation Track (2022)
+# TREC Health Misinformation Track (2022) - Draft 
+
+**WARNING: These guidelines are not yet finalized.  These are draft guidelines.**
 
 ## Track Introduction
 
