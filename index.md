@@ -22,9 +22,9 @@ The 2022 track will have two tasks.  We will again repeat the core Web Retrieval
 
 **Task Description:** Participants devise search technologies that promote credible and correct information over incorrect information, with the assumption that correct information can better lead people to make correct decisions.
 
-Each topic concerns itself with a health issue and a treatment for that issue.  The topics represent a user who is looking for information that is useful for making a decision about whether or not the treatment is helpful or unhelpful for treating the health issue.  Better search result rankings will place very useful documents that are credible and correct at the top of ranking, and will not return incorrect information.  In this search task, incorrect information is considered harmful and should not be returned.  
+Each search topic represents a user who is looking for information that is useful for making a "yes" or "no" decision regarding a health-related question. Better search result rankings will place very useful documents that are credible and correct at the top of ranking, and will not return incorrect information.  In this search task, incorrect information is considered harmful and should not be returned.  
 
-Each topic will be formulated as a yes/no question.  For example, "Is dexamethasone a good treatment for croup?" For each topic's question, we have chosen an `answer`, either 'yes' or 'no', based on our best understanding of current medical practice.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the answer we have chosen.  Consult a medical doctor for professional advice.**  
+Each topic will be formulated as a yes/no question.  For example, "Does apple cider vinegar work to treat ear infections?" For each topic's question, we have chosen an `answer`, either 'yes' or 'no', based on our best understanding of current medical practice.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the answer we have chosen.  Consult a medical doctor for professional advice.**  
 
 Correct documents are those considered to be supportive of the topic's correct `answer`, and incorrect documents are those that are supportive of the wrong `answer`.
 
@@ -32,23 +32,50 @@ For each topic, the topic's author will determine an `evidence` link for a webpa
 
 In 2022, the topic's `answer` and `evidence` fields will not be revealed until after evaluation results are provided by NIST.  
 
-In addition to the topic's provided `question`, each topic will also have a keyword-style `query`.  The core retrieval task is to use the topic's `query` or `question` and return a ranking of documents without use of any of the other topic fields.  Each topic will also have a `background` field that will give basic background information on the topic's health issue and treatment.
+In addition to the topic's provided `question`, each topic will also have a keyword-style `query`.  The `question` and `query` fields represents two common forms of how a user might query a modern web search system. Each topic will also have a `background` field that will give basic background information on the topic's question. The core retrieval task is to use the topic's `query` or `question` and return a ranking of documents without use of the any of the other topic fields.  
 
-Runs may be either automatic runs or manual runs.  Automatic runs are required to make no use of the provided topics except for final production of the run.  Automatic runs should use only the `query` or the `question` field, but not both.  
+Runs may be either automatic runs or manual runs.  Automatic runs are required to make no use of the provided topics except for final production of the run.  Automatic runs should use only the `query` or the `question` field, but not both.  Automatic runs may not use the `background`, `evidence`, or the `answer` fields.
 
 The 2022 topics will be similar to the 2021 topics, and if needed for an automatic run, the 2021 topics should be used for tuning and not the 2022 topics.
 
-Manual runs are any runs that are not automatic runs.  A manual run typically has been tuned on the topics or hand human intervention to improve performance.  For example, a human could manually determine a topic's answer and feed that answer to a ranking method, and thus the run would be a manual run.  Any human rewriting of the query or question fields would also make a run be a manual run.
+Manual runs are any runs that are not automatic runs.  A manual run typically has been tuned on the topics or had human intervention to improve performance.  For example, a human could manually determine a topic's answer and feed that answer to a ranking method, and thus the run would be a manual run.  Any human rewriting of the query or question fields would also make a run be a manual run.  Use of the `background`, `evidence`, and `answer` fields would also make a run a manual run.  (The `evidence` and `answer` fields will not be available until the 2022 evaluation results are released.)
 
 ### Auxiliary Task: Answer Prediction
 
-As noted above, in 2022, we will not provide a topic's `answer` until after evaluation.  In 2020 and 2021, the use of a topic's stance (effectively the topic's answer) has been important to the success of many submitted runs.  The Answer Prediction task provide a chance for participants to focus on the challenge of predicting the answer to the topic's `question`.
+As noted above, in 2022, we will not provide a topic's `answer` until after evaluation.  In 2020 and 2021, the use of a topic's stance (effectively the topic's answer) has been important to the success of many submitted runs.  The Answer Prediction task provides a chance for participants to focus on the challenge of predicting the answer to the topic's `question`.
 
 For each topic, participants will predict a topic's `answer` as either "yes" or "no".  Participants will also provide a prediction score between 0 and 1 for each topic.  A score of 1 means "yes" and a score of 0 means "no".  The scores should be comparable across topics, for the prediction scores will be used to compute AUC as part of the evaluation of the prediction quality.
 
-As with the Core Retrieval task, Answer Prediction runs may be automatic or manual and will follow the same rules.  See above for details.
+As with the core Web Retrieval task, Answer Prediction runs may be automatic or manual and will follow the same rules.  See above for details.
 
-#### Document Collection
+## Topics
+
+Topics will be authored by the track organizers.  The NIST assessors will be provided the topic's `question` and `background`, be asked to make judgments as per the assessing guidelines.  The 2022 guidelines are to be written, but they will be similar to the [2021 assessing guidelines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf).
+
+The topics will be provided as XML files using the following format:
+
+```xml
+<topics>
+  <topic>
+    <number>12345</number>
+    <question>Does apple cider vinegar work to treat ear infections?</question>
+    <query>apple cider vinegar ear infection</query>
+    <background>Apple cider vinegar is a common cooking ingredient that contains
+    acetic acid and has antiseptic properties.  Ear infections can be caused by 
+    either viruses or bacteria and cause fluid build up in the middle ear, which 
+    is located behind the eardrum.</background>
+    <disclaimer>We do not claim to be providing medical advice, and medical 
+    decisions should never be made based on the stance we have chosen. Consult 
+    a medical doctor for professional advice.</disclaimer>
+  </topic>
+<topic>
+...
+</topic>
+</topics>
+```
+After evaluation results are released, the topics will be updated to include `answer` and `evidence` fields.
+
+## Document Collection
 
 In 2022, we are reusing the collection we used in 2021.  We will be using the [**noclean** version of the C4 dataset](https://huggingface.co/datasets/allenai/c4) used by [Google to train their T5 model](https://www.tensorflow.org/datasets/catalog/c4). The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains \~ 1B English documents.
 
@@ -111,36 +138,13 @@ for filepath in files:
 
 ```
 
-#### Topics
-
-Topics will be authored by the track organizers.  The NIST assessors will be provided the topic's `question` and `background`, be asked to make judgments as per the assessing guidelines.  The 2022 guidelines are to be written, but they will be similar to the [2021 assessing guidelines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf).
-
-The topics will be provided as XML files using the following format:
-
-```xml
-<topics>
-  <topic>
-    <number>1234</number>
-    <question>Is dexamethasone a good treatment for croup?</question>
-    <query>dexamethasone croup</query>
-    <background>Croup is an infection of the upper airway and causes swelling, 
-      which obstructs breathing and leads to a barking cough. As one kind of 
-      corticosteroids, dexamethasone can weaken the immune response and 
-      therefore mitigate symptoms such as swelling.</background>
-  </topic>
-<topic>
-...
-</topic>
-</topics>
-```
-
-#### Evaluation
+## Evaluation
 
 The evaluation of Web Retrieval runs will be similar to 2021 but with likely improvements by the organizers.  The Answer Prediction runs will be evaluated using standard measures for evaluation of prediction tasks with AUC being the primary measure.
 
-#### Runs 
+## Runs 
 
-Participating groups will be allowed to submit as many runs as they like, but they need authorization from the Track organizers before submitting more than 10 runs. Not all runs are likely to be used for pooling and groups will need to specify a preference ordering for pooling purposes.
+Participating groups will be allowed to submit as many runs as they like, but they need authorization from the Track organizers before submitting more than 10 runs per task. Not all runs are likely to be used for pooling and groups will need to specify a preference ordering for pooling purposes.
 
 Runs may be either automatic or manual. 
 
@@ -159,7 +163,7 @@ where:
 * `docno`: the document id number returned by your system for the topic `qid` (See above for more details on how docnos should be constructed it); 
 * `rank`: the rank the document is retrieved;
 * `score`: the score (integer or floating point) that generated the ranking. The score must be in descending (non-increasing) order. The score is important to handle tied scores. (`trec_eval` sorts documents by the specified scores values and not your ranks values);
-* `runtag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.  Runtags for runs submitted by one group should all share a common prefix to identify the group across runs.
+* `runtag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.  **Runtags for runs submitted by one group should all share a common prefix to identify the group across runs.**
 
 The fields should be separated with a space. 
 
@@ -171,11 +175,27 @@ An example run is shown below:
 ...
 ```
 
-The submission format for the Answer Prediction task will be forthcoming.
+The submission format for the Answer Prediction task will be four columns, each separated by a space:
+```
+qid answer score runtag
+```
+where:
++ `qid`: the topic number
++ `answer`: either the string "yes" or "no"
++ `score`: A floating point value ranging from 1.0 to 0.0 where 1.0 means "yes" and a score of 0.0 means "no".  The scores should be comparable across topics.
++ `runtag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.  **Runtags for runs submitted by one group should all share a common prefix to identify the group across runs.**
+
+An example run is shown below:
+```
+151 yes 0.95234 myGroupNameMyMethodName
+152 no 0.30218 myGroupNameMyMethodName
+153 no 0.00396 myGroupNameMyMethodName
+...
+```
 
 ## Schedule
 * **June 21, 2021** Collection released;
-* **May 2022** Guidelines finalized;
+* **May 12, 2022** Guidelines finalized;
 * **Tentative: July 2022** Topics released;
 * **Tentative: September, 2022** Runs due;
 * **Tentative: End of September 2022** Results returned;
