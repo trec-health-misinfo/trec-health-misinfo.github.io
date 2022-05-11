@@ -207,5 +207,5 @@ An example run is shown below:
 
 * [Charles Clarke, University of Waterloo](https://cs.uwaterloo.ca/about/people/claclark)
 * [Maria Maistro, University of Copenhagen](https://di.ku.dk/english/staff/?pure=en/persons/641366)
-* [Mark Smucker, University of Waterloo](http://mansci.uwaterloo.ca/~msmucker/)
+* [Mark Smucker, University of Waterloo](https://uwaterloo.ca/management-sciences/profile/msmucker)
 
