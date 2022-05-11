@@ -2,9 +2,7 @@
 layout: default
 ---
 
-# TREC Health Misinformation Track (2022) - Draft 
-
-**WARNING: These guidelines are not yet finalized.  These are draft guidelines.**
+# TREC Health Misinformation Track (2022) 
 
 ## Track Introduction
 
@@ -18,33 +16,37 @@ Track announcements are made via the #health-misinfo-2022 channel in the [TREC S
 
 ## 2022 Track Tasks
 
-The 2022 track will have two tasks.  We will again repeat the AdHoc Web Retrieval task, and we will add a Stance Prediction task.
+The 2022 track will have two tasks.  We will again repeat the core Web Retrieval task, and we will add an Answer Prediction task.  Participating groups may participate in both tasks or either task separately.
 
-### AdHoc Web Retrieval
+### Core Task: Web Retrieval
 
 **Task Description:** Participants devise search technologies that promote credible and correct information over incorrect information, with the assumption that correct information can better lead people to make correct decisions.
 
 Each topic concerns itself with a health issue and a treatment for that issue.  The topics represent a user who is looking for information that is useful for making a decision about whether or not the treatment is helpful or unhelpful for treating the health issue.  Better search result rankings will place very useful documents that are credible and correct at the top of ranking, and will not return incorrect information.  In this search task, incorrect information is considered harmful and should not be returned.  
 
-For each topic, we have chosen a 'stance' for the topic on whether the treatment is helpful or unhelpful for the health issue.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the stance we have chosen.  Consult a medical doctor for professional advice.**  If a treatment is considered 'helpful', then correct documents will those construed to be supportive of the treatment and incorrect documents will be those that would dissuade the searcher from the treatment.  Likewise, an 'unhelpful' treatment should return documents that dissuade the searcher from using the treatment and should avoid returning documents that are supportive of using the treatment.  For each topic, the topic's author will determine an `evidence` link for a webpage that the topic author used as the basis for the topic's stance.  
+Each topic will be formulated as a yes/no question.  For example, "Is dexamethasone a good treatment for croup?" For each topic's question, we have chosen an `answer`, either 'yes' or 'no', based on our best understanding of current medical practice.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the answer we have chosen.  Consult a medical doctor for professional advice.**  
 
-In 2022, the topic's `stance` and `evidence` fields will not be revealed until after evaluation results are provided by NIST.  
+Correct documents are those considered to be supportive of the topic's correct `answer`, and incorrect documents are those that are supportive of the wrong `answer`.
 
-The primary ad-hoc task is to use the topic's `query` or `description` for a topic and return a ranking of documents without use of any of the other topic fields.  
+For each topic, the topic's author will determine an `evidence` link for a webpage that the topic author used as the basis for the topic's answer.  
 
-Runs may be either automatic runs or manual runs.  Automatic runs are required to make no use of the provided topics except for final production of the run.  Automatic runs should use only the `query` or the `description` field, but not both.  Submitted automatic runs will be required to be designated as `query` or `description` runs.  
+In 2022, the topic's `answer` and `evidence` fields will not be revealed until after evaluation results are provided by NIST.  
+
+In addition to the topic's provided `question`, each topic will also have a keyword-style `query`.  The core retrieval task is to use the topic's `query` or `question` and return a ranking of documents without use of any of the other topic fields.  Each topic will also have a `background` field that will give basic background information on the topic's health issue and treatment.
+
+Runs may be either automatic runs or manual runs.  Automatic runs are required to make no use of the provided topics except for final production of the run.  Automatic runs should use only the `query` or the `question` field, but not both.  
 
 The 2022 topics will be similar to the 2021 topics, and if needed for an automatic run, the 2021 topics should be used for tuning and not the 2022 topics.
 
-Manual runs are any runs that are not automatic runs.  A manual run typically has been tuned on the topics or hand human intervention to improve performance.  For example, a human could manually determine a topic's stance and feed that judgment to a ranking method, and thus the run would be a manual run.  Any human rewriting of the query or description fields would also make a run be a manual run.
+Manual runs are any runs that are not automatic runs.  A manual run typically has been tuned on the topics or hand human intervention to improve performance.  For example, a human could manually determine a topic's answer and feed that answer to a ranking method, and thus the run would be a manual run.  Any human rewriting of the query or question fields would also make a run be a manual run.
 
-### Stance Prediction
+### Auxiliary Task: Answer Prediction
 
-As noted above, in 2022, we will not provide a topic's stance until after evaluation.  In 2020 and 2021, the use of a topic's stance has been important to the success of many submitted runs.  The Stance Prediction task provide a chance for participants to focus on the challenge of predicting the stance of a topic.  
+As noted above, in 2022, we will not provide a topic's `answer` until after evaluation.  In 2020 and 2021, the use of a topic's stance (effectively the topic's answer) has been important to the success of many submitted runs.  The Answer Prediction task provide a chance for participants to focus on the challenge of predicting the answer to the topic's `question`.
 
-For each topic, participants will predict a topic's stance as either "helpful" or "unhelpful".  Participants will also provide a prediction score between 0 and 1 for each topic.  A score of 1 means "helpful" and a score of 0 means "unhelpful".  The prediction scores will allow the computation of AUC as part of the evaluation of the prediction quality.
+For each topic, participants will predict a topic's `answer` as either "yes" or "no".  Participants will also provide a prediction score between 0 and 1 for each topic.  A score of 1 means "yes" and a score of 0 means "no".  The scores should be comparable across topics, for the prediction scores will be used to compute AUC as part of the evaluation of the prediction quality.
 
-As with the AdHoc task, Stance Prediction runs may be automatic or manual and will follow the same rules.  See above for details.
+As with the Core Retrieval task, Answer Prediction runs may be automatic or manual and will follow the same rules.  See above for details.
 
 #### Document Collection
 
@@ -111,7 +113,7 @@ for filepath in files:
 
 #### Topics
 
-Topics will be authored by the track organizers.  The NIST assessors will be provided the topic's query, description, and narrative and be asked to make judgments as per the assessing guidelines.  The 2022 guidelines are to be written, but they will be similar to the [2021 assessing guidelines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf).
+Topics will be authored by the track organizers.  The NIST assessors will be provided the topic's `question` and `background`, be asked to make judgments as per the assessing guidelines.  The 2022 guidelines are to be written, but they will be similar to the [2021 assessing guidelines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf).
 
 The topics will be provided as XML files using the following format:
 
@@ -119,21 +121,12 @@ The topics will be provided as XML files using the following format:
 <topics>
   <topic>
     <number>1234</number>
+    <question>Is dexamethasone a good treatment for croup?</question>
     <query>dexamethasone croup</query>
-    <description>Is dexamethasone a good treatment for croup?</description>
-    <narrative>Croup is an infection of the upper airway and causes swelling, 
+    <background>Croup is an infection of the upper airway and causes swelling, 
       which obstructs breathing and leads to a barking cough. As one kind of 
       corticosteroids, dexamethasone can weaken the immune response and 
-      therefore mitigate symptoms such as swelling. A very useful document 
-      would discuss the effectiveness of dexamethasone for croup, i.e. a very 
-      useful document specifically addresses or answers the search topic's 
-      question. A useful document would provide information that would help 
-      a user make a decision about treating croup with dexamethasone, and 
-      may discuss either separately or jointly: croup, recommended treatments 
-      for croup, the pros and cons of dexamethasone, etc.</narrative>
-    <disclaimer>We do not claim to be providing medical advice, and medical 
-      decisions should never be made based on the stance we have chosen.  
-      Consult a medical doctor for professional advice.</disclaimer>
+      therefore mitigate symptoms such as swelling.</background>
   </topic>
 <topic>
 ...
@@ -143,7 +136,7 @@ The topics will be provided as XML files using the following format:
 
 #### Evaluation
 
-The evaluation of AdHoc runs will be similar to 2021 but with likely improvements by the organizers.  The Stance Prediction runs will be evaluated using standard measures for evaluation of prediction tasks with AUC being the primary measure.
+The evaluation of Web Retrieval runs will be similar to 2021 but with likely improvements by the organizers.  The Answer Prediction runs will be evaluated using standard measures for evaluation of prediction tasks with AUC being the primary measure.
 
 #### Runs 
 
@@ -151,11 +144,11 @@ Participating groups will be allowed to submit as many runs as they like, but th
 
 Runs may be either automatic or manual. 
 
-*Automatic runs:* Only the topic's `query` or `description` field may be used for automatic runs.  An automatic run may only use the `query` or the `description` field, but not both. An automatic run is made without any tuning or customization based on the topics.  Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. 
+*Automatic runs:* Only the topic's `query` or `question` field may be used for automatic runs.  An automatic run should only use the `query` or the `question` field, but not both. An automatic run is made without any tuning or customization based on the topics.  Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. 
 
 *Manual runs:* A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. All topic fields may be used for manual runs.  We encourage manual runs in addition to automatic runs.  
 
-Submission format for AdHoc runs will follow the standard TREC run format.  For each topic, please return 1,000 ranked documents. The standard TREC run format is as follows:
+Submission format for Web Retrieval runs will follow the standard TREC run format.  For each topic, please return 1,000 ranked documents. The standard TREC run format is as follows:
 
 ```
 qid Q0 docno rank score tag
@@ -164,9 +157,9 @@ where:
 * `qid`: the topic number;
 * `Q0`: unused and should always be Q0;
 * `docno`: the document id number returned by your system for the topic `qid` (See above for more details on how docnos should be constructed it); 
-* `ran`: the rank the document is retrieved;
+* `rank`: the rank the document is retrieved;
 * `score`: the score (integer or floating point) that generated the ranking. The score must be in descending (non-increasing) order. The score is important to handle tied scores. (`trec_eval` sorts documents by the specified scores values and not your ranks values);
-* `tag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.
+* `runtag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.  Runtags for runs submitted by one group should all share a common prefix to identify the group across runs.
 
 The fields should be separated with a space. 
 
@@ -178,10 +171,11 @@ An example run is shown below:
 ...
 ```
 
-The submission format for the Stance Prediction task will be forthcoming.
+The submission format for the Answer Prediction task will be forthcoming.
 
 ## Schedule
 * **June 21, 2021** Collection released;
+* **May 2022** Guidelines finalized;
 * **Tentative: July 2022** Topics released;
 * **Tentative: September, 2022** Runs due;
 * **Tentative: End of September 2022** Results returned;
