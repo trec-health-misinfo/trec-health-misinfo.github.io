@@ -65,7 +65,7 @@ The topics will be provided as XML files using the following format:
     either viruses or bacteria and cause fluid build up in the middle ear, which 
     is located behind the eardrum.</background>
     <disclaimer>We do not claim to be providing medical advice, and medical 
-    decisions should never be made based on the stance we have chosen. Consult 
+    decisions should never be made based on the answer we have chosen. Consult 
     a medical doctor for professional advice.</disclaimer>
   </topic>
 <topic>
