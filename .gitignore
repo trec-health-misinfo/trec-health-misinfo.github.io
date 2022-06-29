@@ -1,0 +1,8 @@
+
+# common emacs files
+*~
+\#*\#
+.\#*
+
+# for aspell backups
+*.bak

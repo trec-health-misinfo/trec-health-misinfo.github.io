@@ -2,97 +2,157 @@
 layout: default
 ---
 
-# TREC Health Misinformation Track (2020)
+# TREC Health Misinformation Track (2022) 
 
-**CLARIFICATION 2020-08-4:** For document identifiers (e.g., \<urn:uuid:49ecaf74-b1aa-4563-83a0-c81cece0e284\>) you should return only the part after the "urn:uuid:" without angle brackets (i.e., 49ecaf74-b1aa-4563-83a0-c81cece0e284).
+## Track Introduction
 
-**UPDATE 2020-08-04:** WET format text extracts of the corpus are now [available](https://ir.nist.gov/trec-hmi/) so that you don't have to do the extraction yourself. You should use the active TREC participants password to access them.
+Web search engines are frequently used to help people make decisions about health-related issues.  Unfortunately, the web is filled with misinformation regarding the efficacy of treatments for health issues.  Search users may not be able to discern correct from incorrect information, nor credible from non-credible sources.  As a result of finding misinformation deemed by the user to be useful to their decision making task, they can make incorrect decisions that waste money and put their health at risk.
 
-## Track Overview
-Misinformation represents a key problem when using search engines to guide any decision-making task: Are users able to discern authoritative from unreliable information and correct from incorrect information? This problem is further exacerbated when the search occurs within uncontrolled data collections, such as the web, where information can be unreliable, misleading, highly technical, and can lead to unfounded escalations. Information from search-engine results can significantly influence decisions, and research shows that increasing the amount of incorrect information about a topic presented in a Search Engine Result Page (SERP) can impel users to make incorrect decisions.
+The TREC Health Misinformation track fosters research on retrieval methods that promote reliable and correct information over misinformation for health-related decision making tasks.
 
-In this context, the TREC 2020 Misinformation track fosters research on retrieval methods that promote reliable and correct information over misinformation. The track offers the following tasks:
-* **Total Recall Task**: The goal is to identify all the documents conveying incorrect information for a specific set of topics;
-* **Ad-hoc Retrieval Task**: The goal is to design a ranking model that promotes credible and correct information over incorrect information;
-* **Evaluation Meta Task**: The goal is to develop new evaluation methods that reflect the credibility and correctness of documents, as well as traditional relevance.
+### Track communication
 
-This year, we have focused the track specifically on misinformation related to COVID-19 and SARS-CoV-2, adopting a news corpus from January to April, 2020 as the basis for our test collection. As our understanding of the disease evolved over this period some facts became better known. For example, at one point, it was suggested that Ibuprofen might worsen COVID-19. A retrieval effort undertaken today should avoid returning these articles, or else label them as potentially misleading.
+Track announcements are made via the #health-misinfo-2022 channel in the [TREC Slack](https://trectalk.slack.com).  
 
-<!--#### These guidelines are still in draft form. We invite comments and suggested changes from participants. We plan to finalize the guidelines on June 5, 2020.-->
+## 2022 Track Tasks
 
-## Tentative Schedule
-* **~~June 30, 2020~~ ~~July 17, 2020~~** [Topics are released](topics.xml);
-* **September 1, 2020** Runs due:
-  * Before 7am September 1, 2020 Eastern Time Zone (Gaithersburg, MD, USA);
-  * Please check TREC active participants page for the runs submission link;
-* **October 2020** Results returned;
-* **October 2020** Notebook paper due;
-* **November 18-20, 2020** TREC Conference;
-* **February 2021** Final report due.
+The 2022 track will have two tasks.  We will again repeat the core Web Retrieval task, and we will add an Answer Prediction task.  Participating groups may participate in both tasks or either task separately.
 
-## Collection
+### Core Task: Web Retrieval
 
-#### Corpus
-For the TREC Health Misinformation 2020 track, we will be using the documents found in [CommonCrawl News crawl](https://commoncrawl.org/2016/10/news-dataset-available/) from January, 1st 2020 to April 30th, 2020. CommonCrawl News contains news articles from news sites all over the world.  
-The format of the collection follows a standard Web ARChive (WARC) format. Each document in a WARC file contains a WARC header and the raw data from the crawl. To learn more about the format of the collection and examples of the full WARC extract, please see the CommonCrawl website [here](https://commoncrawl.org/the-data/get-started/). 
+**Task Description:** Participants devise search technologies that promote credible and correct information over incorrect information, with the assumption that correct information can better lead people to make correct decisions.
 
-The corpus contains non-English documents. Non-English documents are not relevant, even if the document would be relevant in that non-English language.
+Each search topic represents a user who is looking for information that is useful for making a "yes" or "no" decision regarding a health-related question. Better search result rankings will place very useful documents that are credible and correct at the top of ranking, and will not return incorrect information.  In this search task, incorrect information is considered harmful and should not be returned.  
 
-**UPDATE 2020-08-04:** WET format text extracts of the corpus are now [available](https://ir.nist.gov/trec-hmi/) so that you don't have to do the extraction yourself. You should use the active TREC participants password to access them.
+Each topic will be formulated as a yes/no question.  For example, "Does apple cider vinegar work to treat ear infections?" For each topic's question, we have chosen an `answer`, either 'yes' or 'no', based on our best understanding of current medical practice.  **We do not claim to be providing medical advice, and medical decisions should never be made based on the answer we have chosen.  Consult a medical doctor for professional advice.**  
 
-**Instructions on how to download the collection:** The CC News Crawl is available on AWS S3. You will need the [AWS CLI](https://aws.amazon.com/cli/) to download it.
-In the following, you can find the commands to download the data for all four months (please replace the destination with the intended destination in your machine).
+Correct documents are those considered to be supportive of the topic's correct `answer`, and incorrect documents are those that are supportive of the wrong `answer`.
 
-```
-$ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/01 /path/to/local/destination
-$ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/02 /path/to/local/destination
-$ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/03 /path/to/local/destination
-$ aws --no-sign-request s3 sync s3://commoncrawl/crawl-data/CC-NEWS/2020/04 /path/to/local/destination
-```
+For each topic, the topic's author will determine an `evidence` link for a webpage that the topic author used as the basis for the topic's answer.  
 
-**Optional: How to get WET format.** Common Crawl also informally provides a tool to get the text extracts (WET format). WET files contain the extracted plain text with tags (HTML, scripts, etc) removed. Unless you have a reason to do otherwise, we recommend working with these text extracts. If you would like to obtain the WET format for the news crawl, please see the instructions [here](https://groups.google.com/d/msg/common-crawl/hsb90GHq6to/SSVocyq8AAAJ). More information on the WARC and WET file formats can be found [here](https://commoncrawl.org/the-data/get-started/). If you encounter any problems or need help getting the WET files, please [reach out to us](https://groups.google.com/forum/#!forum/trec-health-misinformation-track). 
+In 2022, the topic's `answer` and `evidence` fields will not be revealed until after evaluation results are provided by NIST.  
 
-**Document Identifier:** The WARC header for each document in a WARC file contains a "WARC-Record-ID" field. For our purposes, the value of the WARC-Record-ID field is considered the document identifier (the "docno").  If you plan to use WET files, please use the WARC-Refers-To field instead.
+In addition to the topic's provided `question`, each topic will also have a keyword-style `query`.  The `question` and `query` fields represents two common forms of how a user might query a modern web search system. Each topic will also have a `background` field that will give basic background information on the topic's question. The core retrieval task is to use the topic's `query` or `question` and return a ranking of documents without use of the any of the other topic fields.  
 
-#### Topics
-The track focuses on topics within the consumer health search domain (people seeking health advice online). For TREC 2020 the track will focus on COVID-19. The recent coronavirus crisis represents a good example of uncontrolled proliferation of misinformation, which can have serious consequences on consumer health.
+Runs may be either automatic runs or manual runs.  Automatic runs are required to make no use of the provided topics except for final production of the run.  Automatic runs should use only the `query` or the `question` field, but not both.  Automatic runs may not use the `background`, `evidence`, or the `answer` fields.
 
-Unlike previous tracks, the assessors will not be creating their own topic statements. Instead, the assessors will be provided with topics that include title, description, answer, narrative, and evidence fields. The title field of each topic is built as a pair of treatment and disease, where for TREC 2020, the disease is always COVID-19. The description is in the form of a question and is built as a triplet of (treatment, effect, disease) where the effect can be: cause, prevent, worsen, cure, help. Only these terms will be used, so that descriptions are all of the form: "Can X Y COVID-19?", where X is a treatment and Y is one of the five effect terms.
+The 2022 topics will be similar to the 2021 topics, and if needed for an automatic run, the 2021 topics should be used for tuning and not the 2022 topics.
 
-The answer field  is one of "yes" or "no". *You should assume that this field specifies the correct answer for the purposes of this task.* This answer corresponds to the topic writer's best understanding of medical consensus at the time of topic creation, but it is not medical advice, and should not be taken as truth outside of the context of this track. The evidence field contains the URL of a page from the open Web that was used to determine this answer. This page may or may not be part of the corpus.
+Manual runs are any runs that are not automatic runs.  A manual run typically has been tuned on the topics or had human intervention to improve performance.  For example, a human could manually determine a topic's answer and feed that answer to a ranking method, and thus the run would be a manual run.  Any human rewriting of the query or question fields would also make a run be a manual run.  Use of the `background`, `evidence`, and `answer` fields would also make a run a manual run.  (The `evidence` and `answer` fields will not be available until the 2022 evaluation results are released.)
 
-For the total recall task, participants should identify documents contradicting the answer. For the adhoc task, participants should return the most credible and complete information supporting the answer. Note that for many topics the corpus may contain a large number of documents that would be relevant in the traditional topical sense, but which neither support nor contradict the answer.
+### Auxiliary Task: Answer Prediction
 
-The topics will be provided as `XML` files using the following format:
+As noted above, in 2022, we will not provide a topic's `answer` until after evaluation.  In 2020 and 2021, the use of a topic's stance (effectively the topic's answer) has been important to the success of many submitted runs.  The Answer Prediction task provides a chance for participants to focus on the challenge of predicting the answer to the topic's `question`.
+
+For each topic, participants will predict a topic's `answer` as either "yes" or "no".  Participants will also provide a prediction score between 0 and 1 for each topic.  A score of 1 means "yes" and a score of 0 means "no".  The scores should be comparable across topics, for the prediction scores will be used to compute AUC as part of the evaluation of the prediction quality.
+
+As with the core Web Retrieval task, Answer Prediction runs may be automatic or manual and will follow the same rules.  See above for details.
+
+## Topics
+
+Topics will be authored by the track organizers.  The NIST assessors will be provided the topic's `question` and `background`, be asked to make judgments as per the assessing guidelines.  The 2022 guidelines are to be written, but they will be similar to the [2021 assessing guidelines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf).
+
+The topics will be provided as XML files using the following format:
 
 ```xml
 <topics>
-<topic>
-<number>0</number>
-<title>ibuprofen COVID-19</title>
-<description>Can ibuprofen worsen COVID-19?</description>
-<answer>no</answer>
-<evidence>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7287029</evidence>
-<narrative>Ibuprofen is an anti-inflammatory drug used to reduce fever and treat pain and
-inflammation. Recently, there has been a debate over whether Ibuprofen can worsen 
-the effects of COVID-19. A helpful document might explain in clear language that
-there is no scientific evidence supporting this concern. A harmful document might
-create anxiety and/or cause people to avoid taking the drug.</narrative>
-</topic>
+  <topic>
+    <number>12345</number>
+    <question>Does apple cider vinegar work to treat ear infections?</question>
+    <query>apple cider vinegar ear infection</query>
+    <background>Apple cider vinegar is a common cooking ingredient that contains
+    acetic acid and has antiseptic properties.  Ear infections can be caused by 
+    either viruses or bacteria and cause fluid build up in the middle ear, which 
+    is located behind the eardrum.</background>
+    <disclaimer>We do not claim to be providing medical advice, and medical 
+    decisions should never be made based on the answer we have chosen. Consult 
+    a medical doctor for professional advice.</disclaimer>
+  </topic>
 <topic>
 ...
 </topic>
 </topics>
 ```
+After evaluation results are released, the topics will be updated to include `answer` and `evidence` fields.
 
-The narrative and evidence fields are intended to aid with assessment and should not be used for automatic runs. All of the other fields may be used by automatic runs.
+## Document Collection
 
-## Runs
-For the total recall and adhoc tasks, runs may be either automatic or manual. An automatic run is made without any tuning or manual influence. Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. The narrative field and evidence field of topics should not be used for automatic runs, but all other topic fields may be used.  
+In 2022, we are reusing the collection we used in 2021.  We will be using the [**noclean** version of the C4 dataset](https://huggingface.co/datasets/allenai/c4) used by [Google to train their T5 model](https://www.tensorflow.org/datasets/catalog/c4). The collection is comprised of text extracts from the April 2019 snapshot of Common Crawl. The Collection contains \~ 1B English documents.
 
-A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. The narrative and evidence fields may be used for manual runs, but use of these fields makes the run a manual run, even if all other processing is automatic.
+You can download the corpus on a Debian/Ubuntu machine using the following commands ([see HuggingFace for further information](https://huggingface.co/datasets/allenai/c4)).
+```
+sudo apt-get install git-lfs 
+git lfs install
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/allenai/c4
+cd c4
+git lfs pull --include="en.noclean/c4-train*"
+```
+The collection is made up of the 7168 gzipped jsonl files located in the en.noclean directory.  We are using only the `c4-train.*.json.gz` files and not the `c4-validation.*.json.gz` files.  Each file contains \~150k documents, and has one document per line. A document is a json object with the fields `text`, `url` and `timestamp`. As packaged in c4.noclean, documents do not contain a document identifier. For this TREC track we will be adding our own document identifiers to the collection.
 
-Submission format will follow the standard TREC run format as follows:
+The docno spec is as follows:
+
+For documents inside files `c4/en.noclean/c4-train.?????-of-07168.json.gz`, the docno will be `en.noclean.c4-train.?????-of-07168.<N>` where `<N>` is the line number of the document starting at 0. This goes for all 7168 training files in the path c4/en.noclean/.
+
+So for example, in the file `en.noclean/c4-train.01234-of-07168.json.gz` the first document's identifier will be `en.noclean.c4-train.01234-of-07168.0`, the second document's identifier will be `en.noclean.c4-train.01234-of-07168.1` and the last document's identifier will be `en.noclean.c4-train.01234-of-07168.148409`.
+
+One way to insert document identifiers is by using the provided [python script](renamer.py). Another would be to name the documents as you index them.
+
+```python
+{% raw %}
+"""
+Script to add docnos to files in c4/no.clean
+To process all files:
+python renamer.py --path <path-to-c4-repo>
+To process a subset, e.g. the first 20 files:
+python renamer.py --path <path-to-c4-repo> --pattern 000[01]?
+"""
+import argparse
+import glob
+import gzip
+
+parser = argparse.ArgumentParser(description='Add docnos to C4 collection.')
+parser.add_argument('--path', type=str, help='Root of C4 git repo.', required=True)
+parser.add_argument('--pattern', type=str, default="?????", help='File name patterns to process.')
+args = parser.parse_args()
+pattern = args.pattern
+path = args.path
+
+
+def new_docno(file_number, line_number):
+    return f'en.noclean.c4-train.{file_number}-of-07168.{line_number}'
+
+
+files = sorted(list(glob.iglob(f'{path}/en.noclean/c4-train.{pattern}-of-07168.json.gz')))
+
+for filepath in files:
+    with gzip.open(filepath) as f:
+        file_number = filepath[-22:-22 + 5]
+        file_name = filepath[-31:]
+        print(f"adding docnos to file number {file_number} ...")
+        with gzip.open(f'{path}/en.noclean.withdocnos/{file_name}', 'wb') as o:
+            for line_number, line in enumerate(f.readlines()):
+                line = line.decode('utf-8')
+                new_line = f"{{\"docno\":\"{new_docno(file_number, line_number)}\",{line[1:]}"
+                o.write(new_line.encode('utf-8'))
+{% endraw %}
+
+```
+
+## Evaluation
+
+The evaluation of Web Retrieval runs will be similar to 2021 but with likely improvements by the organizers.  The Answer Prediction runs will be evaluated using standard measures for evaluation of prediction tasks with AUC being the primary measure.
+
+## Runs 
+
+Participating groups will be allowed to submit as many runs as they like, but they need authorization from the Track organizers before submitting more than 10 runs per task. Not all runs are likely to be used for pooling and groups will need to specify a preference ordering for pooling purposes.
+
+Runs may be either automatic or manual. 
+
+*Automatic runs:* Only the topic's `query` or `question` field may be used for automatic runs.  An automatic run should only use the `query` or the `question` field, but not both. An automatic run is made without any tuning or customization based on the topics.  Best practice for an automatic run is to avoid using the topics or even looking at them until all decisions and code have been written to produce the automatic run. 
+
+*Manual runs:* A manual run is anything that is not an automatic run. Manual runs commonly have some human input based on the topics, e.g., hand-crafted queries or relevance feedback. All topic fields may be used for manual runs.  We encourage manual runs in addition to automatic runs.  
+
+Submission format for Web Retrieval runs will follow the standard TREC run format.  For each topic, please return 1,000 ranked documents. The standard TREC run format is as follows:
 
 ```
 qid Q0 docno rank score tag
@@ -100,44 +160,14 @@ qid Q0 docno rank score tag
 where:
 * `qid`: the topic number;
 * `Q0`: unused and should always be Q0;
-* `docno`: the official document id number returned by your system for the topic `qid`;
-* `ran`: the rank the document is retrieved;
+* `docno`: the document id number returned by your system for the topic `qid` (See above for more details on how docnos should be constructed it); 
+* `rank`: the rank the document is retrieved;
 * `score`: the score (integer or floating point) that generated the ranking. The score must be in descending (non-increasing) order. The score is important to handle tied scores. (`trec_eval` sorts documents by the specified scores values and not your ranks values);
-* `tag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.
+* `runtag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.  **Runtags for runs submitted by one group should all share a common prefix to identify the group across runs.**
 
-The fields should be spectated with a whitespace. The width of the columns in the format is not important, but it is important to include all columns and have some amount of white space between the columns.
-Example run is shown below:
-```
-1 Q0 doc-1018wb-57-17875 1 14.8928003311 myGroupNameMyMethodName
-1 Q0 doc-1311wb-18-06089 2 14.7590999603 myGroupNameMyMethodName
-1 Q0 doc-1113wb-13-13513 3 14.5707998276 myGroupNameMyMethodName
-1 Q0 doc-1200wb-47-01250 4 14.5642995834 myGroupNameMyMethodName
-1 Q0 doc-0205wb-37-09270 5 14.3723001481 myGroupNameMyMethodName
-...
-```
+The fields should be separated with a space. 
 
-## Tasks
-
-#### Task 1 - Total Recall
-
-**Task Description:** Documents contradicting the topic's answer are assumed to be misinformation. Participants must identify all documents in a collection that promulgate, promote, and/or support that misinformation. For example, for the example topic above ("Can Ibuprofen worsen COVID-19?"), you must identify all documents indicating that Ibuprofen can worsen COVID-19. Documents making this claim for the purposes of debunking it are not misinformation.
-
-**Runs:** Runs should rank documents according to the likelihood that they promulgate misinformation. Submission format will follow the standard TREC run format, as specified above. You may submit up to three runs of up to 10,000 ranked documents for each topic.
-
-**Evaluation:** Runs will be compared using *gain curves*, which plots recall as a function of rank. The primary metric is R-precision, or equivalently, R-recall, the recall achieved at rank R, where R is the number of positively labeled documents in the collection.
-
-#### Task 2 - AdHoc Retrieval
-
-**Task Description:** Participants devise search technologies that promote credible and correct information over incorrect information, with the assumption that correct information can better lead people to make correct decisions.
-
-Given the corpus and topics, your task is to return relevant, credible, and correct information that will help searchers make correct decisions. 
-You should assume that the statement included in the topic description is correct or not, based on the answer field, even if you know current medical or other evidence suggests otherwise.
-
-Note that this task is more than simply a new definition of what is relevant. There are three types of results: correct and relevant, incorrect, and non-relevant. It is important that search results avoid containing incorrect results, and ranking non-relevant results above incorrect is preferred. In place of notions of correctness, the credibility of the information source is useful, and relevant and credible information is preferred.
-
-**Runs:** Submission format will follow the standard TREC run format, as specified above. For each topic, please return 1,000 ranked documents.  
-Participating groups will be allowed to submit as many runs as they like, but they need authorization from the Track organizers before submitting more than 10 runs. Not all runs are likely to be used for pooling and groups will likely need to specify a preference ordering for pooling purposes.
-
+<<<<<<< HEAD
 **Evaluation:** The final qrels will contain assessments with respect to the following criteria:
 * *Usefulness*: Does the document contain material that the search user might find useful in answering the question?
 * *Answer*: Does the document answer to the question in the description field? If so, is the answer yes or no?
@@ -152,17 +182,47 @@ Submitted runs will be evaluated with respect to usefulness, correctness and cre
 * We will aggregate labels across aspects and compute AP and nDCG@10.
 
 Specific details on how to compute evaluation measures can be found [here](https://github.com/trec-decision/trec-decision.github.io/raw/master/docs/Guidelines_TREC2020Misinformation.pdf).
+=======
+An example run is shown below:
+```
+1 Q0 en.noclean.c4-train.04124-of-07168.69102 1 14.8928003311 myGroupNameMyMethodName
+1 Q0 en.noclean.c4-train.03346-of-07168.52165 2 14.7590999603 myGroupNameMyMethodName
+1 Q0 en.noclean.c4-train.03904-of-07168.54203 3 14.5707998276 myGroupNameMyMethodName
+...
+```
 
-#### Task 3 - Evaluation Meta Task
-Details to be announced later.
+The submission format for the Answer Prediction task will be four columns, each separated by a space:
+```
+qid answer score runtag
+```
+where:
++ `qid`: the topic number
++ `answer`: either the string "yes" or "no"
++ `score`: A floating point value ranging from 1.0 to 0.0 where 1.0 means "yes" and a score of 0.0 means "no".  The scores should be comparable across topics.
++ `runtag`: a tag that uniquely identifies your group AND the method you used to produce the run. Each run should have a different tag.  **Runtags for runs submitted by one group should all share a common prefix to identify the group across runs.**
+
+An example run is shown below:
+```
+151 yes 0.95234 myGroupNameMyMethodName
+152 no 0.30218 myGroupNameMyMethodName
+153 no 0.00396 myGroupNameMyMethodName
+...
+```
+>>>>>>> 321f7e4b91c4e1492642a14d2b57ccdf523290be
+
+## Schedule
+* **June 21, 2021** Collection released;
+* **May 12, 2022** Guidelines finalized;
+* **Tentative: July 2022** Topics released;
+* **Tentative: September, 2022** Runs due;
+* **Tentative: End of September 2022** Results returned;
+* **Tentative: October 2022** Notebook paper due;
+* **November 14-18, 2022** TREC Conference;
+* **February 2023** Final report due.
 
 ## Organizers
 
 * [Charles Clarke, University of Waterloo](https://cs.uwaterloo.ca/about/people/claclark)
 * [Maria Maistro, University of Copenhagen](https://di.ku.dk/english/staff/?pure=en/persons/641366)
-* [Mark Smucker, University of Waterloo](http://mansci.uwaterloo.ca/~msmucker/)
-* [Guido Zuccon, University of Queensland](http://www.zuccon.net/)
+* [Mark Smucker, University of Waterloo](https://uwaterloo.ca/management-sciences/profile/msmucker)
 
-
-## Contact
-For more information or to ask questions, join the [google groups](https://groups.google.com/forum/#!forum/trec-health-misinformation-track)
