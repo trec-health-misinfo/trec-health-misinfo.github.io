@@ -213,8 +213,8 @@ An example run is shown below:
 ## Schedule
 * **June 21, 2021** Collection released;
 * **May 12, 2022** Guidelines finalized;
-* **Tentative: July 2022** Topics released;
-* **Tentative: September, 2022** Runs due;
+* **July 11, 2022** Topics released;
+* **August 1, 2022** Runs due;
 * **Tentative: End of September 2022** Results returned;
 * **Tentative: October 2022** Notebook paper due;
 * **November 14-18, 2022** TREC Conference;
