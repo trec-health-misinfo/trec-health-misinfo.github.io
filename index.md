@@ -167,22 +167,6 @@ where:
 
 The fields should be separated with a space. 
 
-<<<<<<< HEAD
-**Evaluation:** The final qrels will contain assessments with respect to the following criteria:
-* *Usefulness*: Does the document contain material that the search user might find useful in answering the question?
-* *Answer*: Does the document answer to the question in the description field? If so, is the answer yes or no?
-* *Credibility*: How credible is the document?
-Note that non-useful documents will not be assessed with respect to credibility and wether they provide an answer. 
-
-Answer labels will be mapped to *correctness* by comparing the answer in the document and the topic answer field. If the answer provided by the document is the same in the answer field of the topic, then the document will be considered correct, otherwise it will be not correct.
-
-Submitted runs will be evaluated with respect to usefulness, correctness and credibility:
-* We will compute AP and nDCG@10 for each individual aspect; 
-* We will compute CAM and MM instantiated with AP and nDCG@10 (CAM is the mean across aspects computed separately, similarly MM is the harmonic mean across aspects);
-* We will aggregate labels across aspects and compute AP and nDCG@10.
-
-Specific details on how to compute evaluation measures can be found [here](https://github.com/trec-decision/trec-decision.github.io/raw/master/docs/Guidelines_TREC2020Misinformation.pdf).
-=======
 An example run is shown below:
 ```
 1 Q0 en.noclean.c4-train.04124-of-07168.69102 1 14.8928003311 myGroupNameMyMethodName
@@ -208,13 +192,12 @@ An example run is shown below:
 153 no 0.00396 myGroupNameMyMethodName
 ...
 ```
->>>>>>> 321f7e4b91c4e1492642a14d2b57ccdf523290be
 
 ## Schedule
 * **June 21, 2021** Collection released;
 * **May 12, 2022** Guidelines finalized;
-* **July 11, 2022** Topics released;
-* **August 1, 2022** Runs due;
+* **Tentative: July 2022** Topics released;
+* **Tentative: September, 2022** Runs due;
 * **Tentative: End of September 2022** Results returned;
 * **Tentative: October 2022** Notebook paper due;
 * **November 14-18, 2022** TREC Conference;
