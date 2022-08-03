@@ -4,6 +4,10 @@ layout: default
 
 # TREC Health Misinformation Track (2022) 
 
+## Latest Updates
+
+**New Run Submission Deadline:** As of August 3, the run submission deadline has been changed by NIST to August 28, 2022.  
+
 ## Track Introduction
 
 Web search engines are frequently used to help people make decisions about health-related issues.  Unfortunately, the web is filled with misinformation regarding the efficacy of treatments for health issues.  Search users may not be able to discern correct from incorrect information, nor credible from non-credible sources.  As a result of finding misinformation deemed by the user to be useful to their decision making task, they can make incorrect decisions that waste money and put their health at risk.
@@ -199,7 +203,7 @@ An example run is shown below:
 * **June 21, 2021** Collection released;
 * **May 12, 2022** Guidelines finalized;
 * **July 13, 2022** Topics released via [TREC's web page for active participants](https://trec.nist.gov/act_part/tracks2022.html)
-* **August 1, 2022** Runs due;
+* ~~August 1, 2022~~ **August 28, 2022** Runs due;
 * **Tentative: End of September 2022** Results returned;
 * **Tentative: October 2022** Notebook paper due;
 * **November 14-18, 2022** TREC Conference;
