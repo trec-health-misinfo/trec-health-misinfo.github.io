@@ -56,7 +56,7 @@ As with the core Web Retrieval task, Answer Prediction runs may be automatic or 
 
 Topics are now available via [TREC's web page for active participants](https://trec.nist.gov/act_part/tracks2022.html). The link for the topics is titled "2022 Topics (v0713)" under the Health Misinformation section. 
 
-Topics will be authored by the track organizers.  The NIST assessors will be provided the topic's `question` and `background`, be asked to make judgments as per the assessing guidelines.  The 2022 guidelines are to be written, but they will be similar to the [2021 assessing guidelines](docs/TREC-2021-Health-Misinformation-Track-Assessing-Guidelines_Version-2.pdf).
+Topics will be authored by the track organizers.  The NIST assessors will be provided the topic's `question` and `background`, be asked to make judgments as per the assessing guidelines.  We provided the following [assessing guidelines](docs/TREC-2022-Health-Misinformation-Track-Assessing-Guidelines.pdf) to the NIST assessors.
 
 The topics will be provided as XML files using the following format:
 
